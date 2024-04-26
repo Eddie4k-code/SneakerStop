@@ -12,7 +12,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -20,7 +20,7 @@ jobs:
         terraform_version: 1.0.0
       
     - name: Terraform Init
-      run: terraform init ./terraform
+      run: terraform init -chdir terraform
       
     - name: Terraform Plan
-      run: terraform plan ./terraform
+      run: terraform plan -chdir terraform
