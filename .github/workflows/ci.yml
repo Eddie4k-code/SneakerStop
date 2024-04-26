@@ -26,5 +26,5 @@ jobs:
       run: terraform -chdir=./terraform init
       
     - name: Terraform Plan
-      run: terraform -chdir=./terraform plan 
+      run: terraform -chdir=./terraform plan -var="kubeconfig=${{ secrets.KUBECONFIG }}"
       id: plan
