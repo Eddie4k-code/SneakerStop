@@ -2,8 +2,8 @@ name: Terraform Plan
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - 'terraform/**' # Trigger only if something changes in the 'terraform' directory
 
 jobs:
   terraform:
@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Change directory to Terraform directory
+      run: cd terraform
       
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
