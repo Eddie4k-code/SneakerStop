@@ -2,9 +2,10 @@ name: Terraform Plan
 
 on:
   push:
-    paths:
-      - 'terraform/**' # Trigger only if something changes in the 'terraform' directory
-
+    #paths:
+      #- 'terraform/**' # Trigger only if something changes in the 'terraform' directory
+    branches:
+      - master 
 jobs:
   terraform:
     runs-on: ubuntu-latest
