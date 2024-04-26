@@ -20,7 +20,8 @@ jobs:
         terraform_version: 1.0.0
       
     - name: Terraform Init
-      run: terraform init -chdir terraform
+      run: terraform -chdir=./terraform init
       
     - name: Terraform Plan
-      run: terraform plan -chdir terraform
+      run: terraform -chdir=./terraform plan 
+      id: plan
