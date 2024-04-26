@@ -13,24 +13,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
-    - name: Change directory to Terraform directory
-      run: cd terraform
-      
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.0.0
       
     - name: Terraform Init
-      run: terraform init
+      run: terraform init ./terraform
       
     - name: Terraform Plan
-      run: terraform plan -out=tfplan
-      id: plan
-      
-    - name: Save plan artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: tfplan
-        path: ./tfplan
+      run: terraform plan ./terraform
