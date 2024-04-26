@@ -9,26 +9,13 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+
+    env:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
-    - name: Install kubectl
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y apt-transport-https
-        sudo apt-get install -y curl
-        sudo apt-get install -y gnupg2
-        sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-        echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-        sudo apt-get update
-        sudo apt-get install -y kubectl
-
-    - name: Install Docker
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y docker.io
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
