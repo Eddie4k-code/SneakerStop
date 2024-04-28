@@ -1,4 +1,4 @@
-name: Terraform Plan
+name: Docker Build and Push
 
 on:
   push:

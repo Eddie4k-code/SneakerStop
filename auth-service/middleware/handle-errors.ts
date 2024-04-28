@@ -3,7 +3,7 @@ import { RequestValidationError } from "../errors/request-validation-error";
 import { DatabaseError } from "../errors/database-error";
 import { CustomError } from "../errors/custom-error";
 
-export const errorHandler = (err: Error, req: Request, res: Response) => {
+export const errorHandler = async (err: Error, req: Request, res: Response) => {
 
 
     if (err instanceof CustomError) {
