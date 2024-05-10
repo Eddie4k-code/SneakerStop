@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { CustomError } from '../errors/custom-error';
 
-export const errorHandler = async (
+export const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
@@ -14,4 +14,5 @@ export const errorHandler = async (
   res.status(400).send({
     error: "Something went wild" 
   });
+
 };
