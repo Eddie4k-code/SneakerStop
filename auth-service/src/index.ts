@@ -9,12 +9,8 @@ import { errorHandler } from '../middleware/handle-errors';
 
 const app = express();
 
-app.use(express.json());
-app.use(currentUserRouter);
-app.use(signInRouter);
-app.use(signOutRouter);
-app.use(signUpRouter);
-app.use(errorHandler);
+app.use(express.json());    
+app.use(signUpRouter)
 
 
 
