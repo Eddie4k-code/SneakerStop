@@ -30,12 +30,9 @@ const start = async () => {
 
         app.listen('3000', () => {
             console.log("Auth Service Running on Port 3000 Successfully");
-            start();
         });
     } catch (err) {
-
         console.log(err);
-
     }
 
     
