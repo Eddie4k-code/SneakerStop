@@ -2,8 +2,6 @@ name: Docker Build and Push
 
 on:
   push:
-    #paths:
-      #- 'terraform/**' # Trigger only if something changes in the 'terraform' directory
     branches:
       - master 
 jobs:

@@ -5,6 +5,7 @@ import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
 import { errorHandler } from '../middleware/handle-errors';
 import { NotFoundError } from '../errors/not-found';
+import mongoose from 'mongoose';
 
 
 
@@ -19,6 +20,23 @@ app.all("*", async (req: Request, res: Response, next: NextFunction) => {
 
 app.use(errorHandler); 
 
-app.listen('3000', () => {
-    console.log("Auth Service Running on Port 3000 Successfully");
-});
+
+
+
+const start = async () => {
+
+    try {
+        await mongoose.connect("mongodb://auth-mongo-srv:27017/auth").then(() => console.log("Auth Service Connected to MongoDB"));
+
+        app.listen('3000', () => {
+            console.log("Auth Service Running on Port 3000 Successfully");
+            start();
+        });
+    } catch (err) {
+
+        console.log(err);
+
+    }
+
+    
+}
