@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 //Properties of a User
 interface IUser {
     email: string
-    password: string
+    password: string | Promise<string>
 }
 
 //Properties of a User Model
@@ -18,7 +18,7 @@ interface IUserModel extends mongoose.Model<IUser> {
 //Properties of a User Document
 interface IUserDocument extends mongoose.Document {
     email: string;
-    password: string;
+    password: string | Promise<string>;
 }
 
 /* Mongo Schema for a User */
@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.createUser = (attrs: IUser): IUserDocument => {
     return new UserModel(attrs);
 }
+
+
+
+
 
 
 
