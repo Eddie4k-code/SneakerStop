@@ -31,10 +31,15 @@ router.post("/api/users/signup", async (req: Request, res: Response, next: NextF
     await user.save();
 
 
+    if (!process.env.JWT_SECRET) {
+        throw new Error("JWT_SECRET IS MISSING");
+    }
+
+
     const userJWT = jwt.sign({
         id: user._id,
         email: user.email
-    }, 'secret123');
+    }, process.env.JWT_SECRET!);
 
     req.session = {
         jwt: userJWT

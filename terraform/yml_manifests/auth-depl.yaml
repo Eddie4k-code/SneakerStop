@@ -16,3 +16,9 @@ spec:
       containers:
         - name: auth-service
           image: eddie1322/auth-service:latest
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_SECRET
