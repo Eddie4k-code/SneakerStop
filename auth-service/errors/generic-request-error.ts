@@ -18,7 +18,7 @@ export class GenericRequestError extends CustomError {
 
 
     serializeError(): { error: string; } {
-        throw new Error("Method not implemented.");
+        return {error: this.error}
     }
     
 }
