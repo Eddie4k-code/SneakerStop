@@ -23,7 +23,7 @@ router.post("/api/users/signup", async (req: Request, res: Response, next: NextF
     }
 
 
-    const hashedPassword = Password.passwordToHash(password);
+    const hashedPassword = await Password.passwordToHash(password);
 
     const user = UserModel.createUser({email, password: hashedPassword});
 
