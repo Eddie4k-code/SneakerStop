@@ -21,7 +21,7 @@ router.post("/api/users/signup", async (req: Request, res: Response, next: NextF
         next(new RequestValidationError("User with that email already exists!"));
     }
 
-    const user = UserModel.build({email, password});
+    const user = UserModel.createUser({email, password});
 
     await user.save();
 

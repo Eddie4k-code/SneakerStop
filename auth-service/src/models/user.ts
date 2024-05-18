@@ -12,7 +12,7 @@ interface IUser {
 
 //Properties of a User Model
 interface IUserModel extends mongoose.Model<IUser> {
-    build(attrs: IUser): IUserDocument
+    createUser(attrs: IUser): IUserDocument
 }
 
 //Properties of a User Document
