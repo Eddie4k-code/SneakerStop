@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 /* Model Creation for User */
 
 
-//Shape of a User
+//Properties of a User
 interface IUser {
     email: string
     password: string
@@ -34,17 +34,15 @@ const userSchema = new mongoose.Schema({
 });
 
 
-
 /* Create a User in Mongo */
 userSchema.statics.createUser = (attrs: IUser): IUserDocument => {
-    return new User(attrs);
+    return new UserModel(attrs);
 }
 
 
 
-const User = mongoose.model<IUserDocument, IUserModel>('User', userSchema);
+const UserModel = mongoose.model<IUserDocument, IUserModel>('User', userSchema);
 
 
 
-
-export {User};
+export {UserModel};
