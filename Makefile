@@ -1,4 +1,4 @@
-.PHONY: apply
+.PHONY: apply destroy
 
 #Installs the ingress-nginx controller and applys all kubernetes infrastructure
 apply:

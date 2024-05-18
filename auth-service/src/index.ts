@@ -5,13 +5,23 @@ import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
 import { errorHandler } from '../middleware/handle-errors';
 import { NotFoundError } from '../errors/not-found';
+import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 
 
 
 const app = express();
 
-app.use(express.json());   
+app.set('trust proxy', true); //ingress-nginx proxy
+
+app.use(express.json());
+app.use(
+    cookieSession({
+        signed: false, //JWT will be encrypted.
+        secure: false,
+
+    })
+)   
 app.use(signUpRouter)
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
