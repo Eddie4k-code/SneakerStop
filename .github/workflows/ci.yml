@@ -21,8 +21,9 @@ jobs:
     - name: Run Unit Tests
       run: |
         sudo apt-get install libcurl4
+        export JWT_SECRET=secret123
         cd auth-service && npm install && npm run test:ci
-        
+
     - name: Build and Push Docker Images
       run: |
         docker build ./auth-service -t ${{ secrets.DOCKER_USERNAME }}/auth-service:latest
