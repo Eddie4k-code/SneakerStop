@@ -20,7 +20,7 @@ jobs:
 
     - name: Run Unit Tests
       run: |
-        apt-get install libcurl4
+        sudo apt-get install libcurl4
         docker build ./auth-service -t ${{secrets.DOCKER_USERNAME}}/auth-service:latest
         docker run -e JWT_SECRET=secret123 ${{secrets.DOCKER_USERNAME}}/auth-service:latest npm test
       
