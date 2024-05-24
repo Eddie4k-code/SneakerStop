@@ -3,7 +3,7 @@ import { app } from '../..';
 
 /* check successful sign in */
 it('returns a 200 on successful sign in', async () => {
-    return request(app)
+    return await request(app)
       .post('/api/users/signin')
       .send({
         email: 'test@mail.com',
