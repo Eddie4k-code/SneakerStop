@@ -10,7 +10,7 @@ import mongoose from 'mongoose';
 
 
 
-const app = express();
+export const app = express();
 
 app.set('trust proxy', true); //ingress-nginx proxy
 
