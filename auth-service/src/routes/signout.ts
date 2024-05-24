@@ -4,7 +4,11 @@ const router = express.Router();
 
 
 router.get("/api/users/signout", async (res: Response, req: Request) => {
-    return res.send("Hello User");
+
+    req.session = null;
+
+    return res.json({});
+
 });
 
 
