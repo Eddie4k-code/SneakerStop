@@ -13,6 +13,22 @@ it('returns a 201 on successful signup', async () => {
   });
 
 
+/* cookie check */
+it('sets cookie after signup', async () => {
+  const response = await request(app)
+    .post('/api/users/signup')
+    .send({
+      email: 'test@mail.com',
+      password: 'password'
+    })
+    .expect(201);
+
+  return expect(response.get('Set-Cookie')).toBeDefined();
+
+  
+});
+
+
 it('returns a 400 ', async () => {
   /* All empty fields */
   return request(app)
