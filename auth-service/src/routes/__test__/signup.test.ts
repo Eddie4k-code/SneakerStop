@@ -21,4 +21,5 @@ it('returns a 400 ', async () => {
       email: "",
       password: ""
     })
+    .expect(400);
 });
