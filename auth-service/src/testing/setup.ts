@@ -1,6 +1,7 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { beforeAll, beforeEach, afterAll } from '@jest/globals';
 import mongoose from 'mongoose';
+import { app } from "..";
 
 
 let mongo: MongoMemoryServer;
@@ -23,4 +24,5 @@ beforeEach(async () => {
 afterAll(async () => {
     await mongo.stop();
     await mongoose.connection.close();
+    process.exit(1);
 }, 20000);
