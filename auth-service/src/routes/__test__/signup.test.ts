@@ -16,7 +16,7 @@ it('returns a 201 on successful signup', async () => {
 it('returns a 400 ', async () => {
 
   return request(app)
-    .POST('/api/users/signup')
+    .post('/api/users/signup')
     .send({
       email: "",
       password: ""
