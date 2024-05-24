@@ -17,6 +17,8 @@ router.get("/api/users/currentuser", async (req: Request, res: Response, next: N
 
     const payload = jwt.verify(req.session.jwt, process.env.JWT_SECRET!)
 
+    return res.status(200).json(payload);
+
 });
 
 
