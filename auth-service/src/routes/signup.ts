@@ -22,6 +22,7 @@ router.post("/api/users/signup", async (req: Request, res: Response, next: NextF
     /* Validate whether use exists or not already */
     if (existingUser) {
         next(new GenericRequestError("User with that email already exists!"));
+        return
     }
 
 

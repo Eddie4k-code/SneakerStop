@@ -28,7 +28,7 @@ router.post("/api/users/signin", async (req: Request, res: Response, next: NextF
 
 
     /* Check hashed pw */
-    const validPassword = Password.validate(existingUser.password as string, password);
+    const validPassword = await Password.validate(existingUser.password as string, password);
 
     if (!validPassword) {
         next(new GenericRequestError("Incorrect Email or Password"));
