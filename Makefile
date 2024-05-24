@@ -12,5 +12,5 @@ apply:
 #destorys all kubernetes infrastructure
 destroy:
 	kubectl delete secret jwt-secret
-	kubectl delete namespace ingress-nginx 
 	@cd $(CURDIR)/terraform && terraform init && terraform destroy --auto-approve 
+	@kubectl delete namespace ingress-nginx 

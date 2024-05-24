@@ -19,11 +19,11 @@ app.use(
     cookieSession({
         signed: false, //JWT will be encrypted.
         secure: false,
-
     })
 )   
 app.use(signUpRouter);
 app.use(signInRouter);
+app.use(currentUserRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());
