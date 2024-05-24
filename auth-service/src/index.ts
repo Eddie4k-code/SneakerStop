@@ -42,7 +42,6 @@ const start = async () => {
         throw new Error("JWT_SECRET IS MISSING");
     }
 
-
     try {
         if (process.env.ENVIRONMENT! != "dev") {
             await mongoose.connect("mongodb://auth-mongo-srv:27017/auth").then(() => console.log("Auth Service Connected to MongoDB"));

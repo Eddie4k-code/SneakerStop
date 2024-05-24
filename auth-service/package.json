@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "jest --watchAll --no-cache",
-    "test:ci": "jest"
+    "test": "jest --forceExit --detectOpenHandles"
   },
   "jest": {
     "preset": "ts-jest",

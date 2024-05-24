@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../..';
 
-/* Send a POST Request to our Sign up route */
+/* check successful signup */
 it('returns a 201 on successful signup', async () => {
     return request(app)
       .post('/api/users/signup')
@@ -11,3 +11,14 @@ it('returns a 201 on successful signup', async () => {
       })
       .expect(201);
   });
+
+/* Check empty fields */
+it('returns a 400 ', async () => {
+
+  return request(app)
+    .POST('/api/users/signup')
+    .send({
+      email: "",
+      password: ""
+    })
+});

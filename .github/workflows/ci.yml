@@ -23,7 +23,7 @@ jobs:
         sudo apt-get install libcurl4
         export ENVIRONMENT=dev
         export JWT_SECRET=secret123
-        cd auth-service && npm install && npm run test:ci
+        cd auth-service && npm install && npm run test
 
     - name: Build and Push Docker Images
       run: |
