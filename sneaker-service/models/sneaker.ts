@@ -27,11 +27,19 @@ interface ISneakerDocument extends mongoose.Document {
 
 /* Mongo Schema for a Sneaker */
 const sneakerSchema = new mongoose.Schema({
-    email: {
+    title: {
         type: String,
         required: true
     },
-    password: {
+    size: {
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    userId: {
         type: String,
         required: true
     }

@@ -18,11 +18,8 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
     await sneaker.save();
 
 
-    res.sendStatus(201);
+    return res.sendStatus(201);
 });
 
 export { router as newSneakerRouter };
 
-function checkForEmptyField<T>(email: any) {
-    throw new Error('Function not implemented.');
-}
