@@ -17,6 +17,8 @@ spec:
         - name: sneaker-service
           image: eddie1322/sneaker-service:latest
           env:
+            - name: MONGO_URI
+              value: mongodb://sneaker-mongo-srv:27017/sneaker
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
