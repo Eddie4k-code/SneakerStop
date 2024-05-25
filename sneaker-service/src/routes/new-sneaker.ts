@@ -7,4 +7,4 @@ router.post('/api/sneakers', async (req: Request, res: Response, next: NextFunct
     res.sendStatus(200);
 });
 
-export { router }
+export { router as newSneakerRouter };
