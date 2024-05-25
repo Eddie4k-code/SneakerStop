@@ -13,7 +13,7 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
     }
 
 
-    const sneaker = SneakerModel.createSneaker({title, price, size, userId: req.currentUser!.id});
+    const sneaker = SneakerModel.createSneaker({title: title, price: price, size: size, userId: req.currentUser!.id});
 
     await sneaker.save();
 
