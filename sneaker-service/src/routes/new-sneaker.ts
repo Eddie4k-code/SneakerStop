@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, next: NextFunction) => {
     const {title, price, size} = req.body;
 
-    if (title || price || size == null)  {
+    if (!title || !price || !size)  {
         next(new RequestValidationError("Title, Price and Size must be fulfilled.."));
     }
 
