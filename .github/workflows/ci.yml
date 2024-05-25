@@ -24,12 +24,12 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     # Disable UNIT TEST for now
-    #- name: Run Unit Tests
-      #run: |
-        #sudo apt-get install libcurl4
-        #export ENVIRONMENT=dev
-        #export JWT_SECRET=secret123
-        #cd ${{matrix.service_name}} && npm install && npm run test
+    - name: Run Unit Tests
+      run: |
+        sudo apt-get install libcurl4
+        export ENVIRONMENT=dev
+        export JWT_SECRET=secret123
+        cd ${{ matrix.service_name }} && npm install && npm run test
 
     - name: Build and Push Docker Images
       run: |
