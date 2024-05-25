@@ -16,6 +16,12 @@ it('has a route handler listening to /api/sneakers for post requests', async () 
 
 it('can only be accessed if the user is signed in', async () => {
 
+    const response = await request(app)
+        .post("/api/sneakers")
+        .send({})
+
+    expect(response.status).toEqual(401);
+
 });
 
 it('returns an error if an invalid title is provided', async () => {
