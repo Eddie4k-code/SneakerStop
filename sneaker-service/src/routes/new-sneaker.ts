@@ -6,14 +6,14 @@ const router = express.Router();
 
 
 router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, next: NextFunction) => {
-    const {title, price, size, userId} = req.body;
+    const {title, price, size} = req.body;
 
     if (title || price || size == null)  {
         next(new RequestValidationError("Title, Price and Size must be fulfilled.."));
     }
 
 
-    const sneaker = SneakerModel.createSneaker({title, price, size, userId});
+    const sneaker = SneakerModel.createSneaker({title, price, size, userId: req.currentUser!.id});
 
     await sneaker.save();
 

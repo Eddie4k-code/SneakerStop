@@ -53,7 +53,7 @@ it('creates a sneaker with valid inputs', async () => {
     const response = await request(app)
         .post("/api/sneakers")
         .set('Cookie', await global.signin())
-        .send({title: "Test1", price:123, size:9.5, userId: '123'})
+        .send({title: "Test1", price:123, size:9.5})
         .expect(201);
 
 
