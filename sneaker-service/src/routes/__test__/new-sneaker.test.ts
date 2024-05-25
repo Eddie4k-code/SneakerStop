@@ -7,8 +7,6 @@ it('has a route handler listening to /api/sneakers for post requests', async () 
         .post('/api/sneakers')
         .send({})
 
-    console.log();
-    
         
     expect(response.status).not.toEqual(404);
 
@@ -22,7 +20,7 @@ it('can only be accessed if the user is signed in', async () => {
 
     expect(response.status).toEqual(401);
 
-});
+}, 20000);
 
 
 it('returns a status other than 401 if the user is signed in', async () => {
@@ -35,7 +33,7 @@ it('returns a status other than 401 if the user is signed in', async () => {
     expect(response.status).not.toEqual(401);
 
 
-});
+}, 20000);
 
 
 

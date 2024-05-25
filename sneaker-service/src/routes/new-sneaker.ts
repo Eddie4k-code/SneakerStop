@@ -10,6 +10,7 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
 
     if (!title || !price || !size)  {
         next(new RequestValidationError("Title, Price and Size must be fulfilled.."));
+        return
     }
 
 
