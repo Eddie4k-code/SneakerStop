@@ -1,6 +1,6 @@
 {
   "name": "@sneakerstop/shared",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "npm run clean && tsc",
-    "publish": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
+    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
   },
   "keywords": [],
   "author": "",
