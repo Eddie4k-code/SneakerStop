@@ -1,8 +1,9 @@
 import express, {NextFunction, Request, Response} from 'express'
 import mongoose from 'mongoose';
-import { GenericRequestError } from '../../errors/generic-request-error';
+import { GenericRequestError } from '@sneakerstop/shared';
 import jwt from 'jsonwebtoken';
-import { verifyUser } from '../../middleware/verify-user';
+import { verifyUser } from '@sneakerstop/shared';
+
 const router = express.Router();
 
 

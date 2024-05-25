@@ -24,8 +24,6 @@ it('sets cookie after signup', async () => {
     .expect(201);
 
   return expect(response.get('Set-Cookie')).toBeDefined();
-
-  
 });
 
 

@@ -3,8 +3,8 @@ import { currentUserRouter } from './routes/current-user';
 import { signInRouter } from './routes/signin';
 import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
-import { errorHandler } from '../middleware/handle-errors';
-import { NotFoundError } from '../errors/not-found';
+import { errorHandler } from '@sneakerstop/shared';
+import { NotFoundError } from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 

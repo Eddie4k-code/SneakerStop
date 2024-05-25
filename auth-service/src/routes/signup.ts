@@ -1,8 +1,8 @@
 import express, {NextFunction, Request, Response} from 'express'
 import { checkForEmptyField, Password } from '../utils';
-import { RequestValidationError } from '../../errors/request-validation-error';
+import { RequestValidationError } from '@sneakerstop/shared';
 import { UserModel } from '../models/user';
-import { GenericRequestError } from '../../errors/generic-request-error';
+import { GenericRequestError } from '@sneakerstop/shared';
 import jwt from 'jsonwebtoken';
 
 
