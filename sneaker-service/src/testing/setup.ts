@@ -9,10 +9,10 @@ let mongo: MongoMemoryServer;
 
 
 declare global {
-  var signin: () => Promise<string[]>;
+  var signin: () => string[];
 }
 
-global.signin = async (): Promise<string[]> => {
+global.signin = () => {
 
   const payload = {
     id: '1234',
@@ -34,7 +34,7 @@ global.signin = async (): Promise<string[]> => {
 
 beforeAll(async () => {
   mongo = await MongoMemoryServer.create();
-  const mongoUri = await mongo.getUri();
+  const mongoUri = mongo.getUri();
 
   await mongoose.connect(mongoUri);
 }, 20000);
