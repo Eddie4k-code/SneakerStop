@@ -17,5 +17,5 @@ router.get('/api/sneakers/:id', async (req: Request, res: Response, next: NextFu
     return res.status(200).json(foundSneaker);
 });
 
-export { router as newSneakerRouter };
+export { router as viewSneakerRouter };
 

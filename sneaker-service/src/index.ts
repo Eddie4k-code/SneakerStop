@@ -4,6 +4,7 @@ import { NotFoundError } from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 import { newSneakerRouter } from './routes/new-sneaker';
+import { viewSneakerRouter } from './routes/view-sneaker';
 
 
 
@@ -20,6 +21,7 @@ app.use(
 )   
 
 app.use(newSneakerRouter);
+app.use(viewSneakerRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());
