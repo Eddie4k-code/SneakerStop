@@ -15,7 +15,7 @@ it('return a sneaker if found', async () => {
 
 
 
-    const newSneaker = await SneakerModel.create({title: "Testing123123", price:11, size: 11});
+    const newSneaker = await SneakerModel.create({title: "Testing123123", price:11, size: 11, userId: '123'});
     await newSneaker.save()
 
     const getSneaker = await request(app)
