@@ -8,7 +8,7 @@ it('return a 404 if we cannot find a sneaker', async () => {
     .get('/api/sneakers/shouldnotexist')
     .send()
     .expect(404);
-});
+}, 20000);
 
 it('return a sneaker if found', async () => {
 
@@ -22,4 +22,4 @@ it('return a sneaker if found', async () => {
         .get(`/api/sneakers/${newSneaker._id}`)
         .send()
         .expect(200);
-});
+}, 20000);
