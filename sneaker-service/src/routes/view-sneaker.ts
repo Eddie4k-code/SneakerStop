@@ -7,9 +7,8 @@ const router = express.Router();
 
 router.get('/api/sneakers/:id', async (req: Request, res: Response, next: NextFunction) => {
 
-    const {id} = req.params;
 
-    const foundSneaker = await SneakerModel.findById(id);
+    const foundSneaker = await SneakerModel.findById(req.params.id);
 
     if (!foundSneaker) {
         next(new NotFoundError());
