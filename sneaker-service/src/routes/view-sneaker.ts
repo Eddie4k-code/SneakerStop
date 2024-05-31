@@ -1,4 +1,4 @@
-import { verifyUser, RequestValidationError, GenericRequestError } from '@sneakerstop/shared';
+import { verifyUser, RequestValidationError, GenericRequestError, NotFoundError } from '@sneakerstop/shared';
 import express, {NextFunction, Request, Response} from 'express';
 import { SneakerModel } from '../../models/sneaker';
 
@@ -12,10 +12,10 @@ router.get('/api/sneakers/:id', async (req: Request, res: Response, next: NextFu
     const foundSneaker = await SneakerModel.findById(id);
 
     if (!foundSneaker) {
-        next(new GenericRequestError("Sneaker not found."));
+        next(new NotFoundError());
     }
 
-    return res.status(201).json(foundSneaker);
+    return res.status(200).json(foundSneaker);
 });
 
 export { router as newSneakerRouter };

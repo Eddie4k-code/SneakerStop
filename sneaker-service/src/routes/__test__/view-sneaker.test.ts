@@ -13,18 +13,13 @@ it('return a 404 if we cannot find a sneaker', async () => {
 it('return a sneaker if found', async () => {
 
 
-    const res = await request(app)
-    .post('/api/sneakers')
-    .set('Cookie', global.signin())
-    .send({
-        title: "Testing 123 123",
-        size: 11,
-        price: 23 
-    }).expect(201);
 
+
+    const newSneaker = await SneakerModel.create({title: "Testing123123", price:11, size: 11});
+    await newSneaker.save()
 
     const getSneaker = await request(app)
-        .get(`/api/sneakers/${res.body._id}`)
+        .get(`/api/sneakers/${newSneaker._id}`)
         .send()
         .expect(200);
 });
