@@ -24,7 +24,7 @@ it('return a sneaker if found', async () => {
 
 
     const getSneaker = await request(app)
-        .get(`/api/sneakers/${res.body.id}`)
+        .get(`/api/sneakers/${res.body._id}`)
         .send()
         .expect(200);
 });
