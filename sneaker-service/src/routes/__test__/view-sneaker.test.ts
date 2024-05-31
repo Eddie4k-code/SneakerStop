@@ -1,11 +1,15 @@
 import request from 'supertest';
 import { app } from '../..';
 import { SneakerModel } from '../../../models/sneaker';
+import mongoose from 'mongoose';
 
 it('return a 404 if we cannot find a sneaker', async () => {
 
+    const fakeId = new mongoose.Types.ObjectId().toHexString();
+
+
     await request(app)
-    .get('/api/sneakers/shouldnotexist')
+    .get(`/api/sneakers/${fakeId}`)
     .send()
     .expect(404);
 }, 20000);
