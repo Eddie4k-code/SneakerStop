@@ -12,6 +12,7 @@ router.get('/api/sneakers/:id', async (req: Request, res: Response, next: NextFu
 
     if (!foundSneaker) {
         next(new NotFoundError());
+        return
     }
 
     return res.status(200).json(foundSneaker);
