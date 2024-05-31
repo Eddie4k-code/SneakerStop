@@ -14,7 +14,7 @@ it('return a sneaker if found', async () => {
 
 
     const res = await request(app)
-    .post('/api/tickets')
+    .post('/api/sneakers')
     .set('Cookie', global.signin())
     .send({
         title: "Testing 123 123",
