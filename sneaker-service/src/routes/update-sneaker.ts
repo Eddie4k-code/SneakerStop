@@ -19,7 +19,7 @@ router.put('/api/sneakers/:id', verifyUser, async (req: Request, res: Response, 
     }
 
 
-    if (req.currentUser?.id != foundSneaker.userId) {
+    if (req.currentUser?.id !== foundSneaker.userId) {
         next(new NotAuthorizedError("User does not own this sneaker."));
         return;
     }
