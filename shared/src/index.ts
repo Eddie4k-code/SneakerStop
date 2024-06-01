@@ -9,3 +9,7 @@ export * from './errors/request-validation-error'
 //middleware
 export * from './middleware/handle-errors'
 export * from './middleware/verify-user'
+
+
+//producers
+export * from './producers/producer'

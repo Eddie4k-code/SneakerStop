@@ -1,6 +1,6 @@
 import {Kafka, logLevel, Producer} from 'kafkajs';
 
-abstract class GenericProducer {
+export abstract class GenericProducer {
 
     topic: string;
     protected producer: Producer;
