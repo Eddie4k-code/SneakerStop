@@ -8,6 +8,14 @@ This project is a proof of concept for a sneaker marketplace built on a microser
 
 The architecture of the system is based on microservices, each serving a specific function within the sneaker marketplace ecosystem. Kafka acts as the central event bus for communication between these services, enabling decoupling and scalability.
 
+
+## How is concurrency maintained?
+tbd
+
+
+## How are duplicate events maintained?
+tbd
+
 ## Technologies Used
 
 - Kafka
