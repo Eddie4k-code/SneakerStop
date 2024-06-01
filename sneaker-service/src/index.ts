@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import { newSneakerRouter } from './routes/new-sneaker';
 import { viewSneakerRouter } from './routes/view-sneaker';
 import { allSneakersRouter } from './routes/all-sneakers';
+import { updateSneakerRouter } from './routes/update-sneaker';
 
 
 
@@ -24,6 +25,7 @@ app.use(
 app.use(newSneakerRouter);
 app.use(viewSneakerRouter);
 app.use(allSneakersRouter);
+app.use(updateSneakerRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());
