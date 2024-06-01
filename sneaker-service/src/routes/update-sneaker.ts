@@ -33,15 +33,6 @@ router.put('/api/sneakers/:id', verifyUser, async (req: Request, res: Response, 
 
 
     return res.status(200).json(foundSneaker);
-
-
-
-
-
-
-
-
-    return res.status(200).json(foundSneaker);
 });
 
 export { router as updateSneakerRouter };

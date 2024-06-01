@@ -10,6 +10,7 @@ it('if sneaker not found return a 404', async () => {
 
     const res = await request(app)
         .put(`/api/sneakers/${id}`)
+        .set('Cookie', global.signin())
         .send({
             title: 'testtttttt',
             price: 20
@@ -40,9 +41,12 @@ it('if user is not logged in return 401', async () => {
 
 it('if user did not post sneaker, return a 401', async () => {
 
+    const cookie1 = global.signin();
+    const cookie2 = global.signin();
+
     const res = await request(app)
         .post('/api/sneakers')
-        .set('Cookie', global.signin())
+        .set('Cookie', cookie1)
         .send({
             title: '12345656',
             price: 55,
@@ -51,7 +55,7 @@ it('if user did not post sneaker, return a 401', async () => {
 
     await request(app)
         .put(`/api/sneakers/${res.body._id}`)
-        .set('Cookie', global.signin())
+        .set('Cookie', cookie2)
         .send({
             title: 'test_title',
             price: 32,
