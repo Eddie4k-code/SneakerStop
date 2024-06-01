@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 import { newSneakerRouter } from './routes/new-sneaker';
 import { viewSneakerRouter } from './routes/view-sneaker';
+import { allSneakersRouter } from './routes/all-sneakers';
 
 
 
@@ -22,6 +23,7 @@ app.use(
 
 app.use(newSneakerRouter);
 app.use(viewSneakerRouter);
+app.use(allSneakersRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());

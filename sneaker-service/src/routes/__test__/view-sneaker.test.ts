@@ -6,8 +6,7 @@ import mongoose from 'mongoose';
 it('return a 404 if we cannot find a sneaker', async () => {
 
     const fakeId = new mongoose.Types.ObjectId().toHexString();
-
-
+    
     await request(app)
     .get(`/api/sneakers/${fakeId}`)
     .send()
@@ -15,10 +14,6 @@ it('return a 404 if we cannot find a sneaker', async () => {
 }, 20000);
 
 it('return a sneaker if found', async () => {
-
-
-
-
     const newSneaker = await SneakerModel.create({title: "Testing123123", price:11, size: 11, userId: '123'});
     await newSneaker.save()
 
