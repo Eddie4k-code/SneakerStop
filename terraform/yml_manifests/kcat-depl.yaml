@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kcat
+  namespace: default
+  labels:
+    app: kcat
+spec:
+  selector:
+    matchLabels:
+      app: kcat
+  template:
+    metadata:
+      labels:
+        app: kcat
+    spec:
+      containers:
+        - name: kcat
+          image: edenhill/kcat:1.7.0
+          command: ["/bin/sh"]
+          args: ["-c", "trap : TERM INT; sleep 1000 & wait"]
