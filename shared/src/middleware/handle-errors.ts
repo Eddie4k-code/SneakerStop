@@ -16,7 +16,7 @@ export const errorHandler = (
   console.error(err);
 
   res.status(400).send({
-    error: "Something went really wild!" 
+    error: "Something went really wild!!" 
   });
 
 };
