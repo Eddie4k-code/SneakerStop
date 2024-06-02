@@ -1,8 +1,10 @@
 import {Kafka, logLevel, Producer} from 'kafkajs';
+import { Topics } from '../events/topics';
+import { IEvent } from '../events/event';
 
-export abstract class GenericProducer {
+export abstract class GenericProducer<T extends IEvent> {
 
-    topic: string;
+    topic: Topics;
     protected producer: Producer;
 
     // config
@@ -13,21 +15,21 @@ export abstract class GenericProducer {
     });
 
     
-    constructor(topic: string) {
+    constructor(topic: Topics) {
         this.topic = topic;
 
         this.producer = this.kafka.producer({maxInFlightRequests: 1, idempotent: true, retry: {initialRetryTime: 100, retries:5}}); //EOS Semantics 
     }
 
 
-    async send<T extends Buffer>(event: T): Promise<void> {
+    async send(event: T): Promise<void> {
 
         await this.producer.connect();
 
         await this.producer.send({
             topic: this.topic,
-            messages: [{value: event}],
-            acks: -1
+            messages: [{value: event as any}],
+            acks: -1 //all
         });
 
 

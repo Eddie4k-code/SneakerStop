@@ -12,4 +12,4 @@ export * from './middleware/verify-user'
 
 
 //producers
-export * from './producers/producer'
+export * from './producer/producer'
