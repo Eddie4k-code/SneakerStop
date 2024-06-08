@@ -42,9 +42,9 @@ jobs:
       
       - name: Send and Receive Kafka Message using kcat
         run: |
-        kubectl exec deploy/kcat -- kcat -P -b kafka:9092 -t test-topic <<< "Hello, Kafka!"
+          kubectl exec deploy/kcat -- kcat -P -b kafka:9092 -t test-topic <<< "Hello, Kafka!"
         
-        kubectl exec deploy/kcat -- kcat -C -b kafka:9092 -t test-topic -o beginning -e
+          kubectl exec deploy/kcat -- kcat -C -b kafka:9092 -t test-topic -o beginning -e
 
 
 
