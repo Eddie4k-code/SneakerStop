@@ -9,22 +9,15 @@ export abstract class GenericConsumer<T extends IEvent> {
     protected consumer: Consumer;
     protected groupId: string;
     abstract onEvent(data: any): void;
+    protected kafkaInstance: Kafka; 
 
 
-    // config
-    protected kafka = new Kafka({
-        logLevel: logLevel.DEBUG,
-        brokers:["kafka:29092"], //kafka running on our local kubernetes cluster
-        clientId: 'sneaker-marketplace',
-    });
-
-
-   
-    constructor(topic: Topics, groupId: string) {
+    constructor(topic: Topics, groupId: string, kafkaInstance: Kafka) {
 
         this.topic = topic;
         this.groupId = groupId;
-        this.consumer = this.kafka.consumer({
+        this.kafkaInstance = kafkaInstance;
+        this.consumer = this.kafkaInstance.consumer({
             groupId: this.groupId,
             retry: {retries: 5, initialRetryTime: 100}
         });

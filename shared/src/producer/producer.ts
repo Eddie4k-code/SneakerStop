@@ -6,6 +6,7 @@ export abstract class GenericProducer<T extends IEvent> {
 
     topic: Topics;
     protected producer: Producer;
+    protected kafkaInstance: Kafka;
 
     // config
     protected kafka = new Kafka({
@@ -15,10 +16,10 @@ export abstract class GenericProducer<T extends IEvent> {
     });
 
     
-    constructor(topic: Topics) {
+    constructor(topic: Topics, kafkaInstance: Kafka) {
         this.topic = topic;
-
-        this.producer = this.kafka.producer({maxInFlightRequests: 1, idempotent: true, retry: {initialRetryTime: 100, retries:5}}); //EOS Semantics 
+        this.kafkaInstance = kafkaInstance;
+        this.producer = this.kafkaInstance.producer({maxInFlightRequests: 1, idempotent: true, retry: {initialRetryTime: 100, retries:5}}); //EOS Semantics 
     }
 
 
