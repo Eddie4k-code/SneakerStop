@@ -49,7 +49,7 @@ const start = async () => {
             await mongoose.connect(process.env.MONGO_URI!).then(() => console.log("Auth Service Connected to MongoDB"));
 
             app.listen('3001', () => {
-                console.log("Sneaker Service Running on Port 3000 Successfully");
+                console.log("Sneaker Service Running on Port 3001 Successfully");
             });
 
             new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker').listen();

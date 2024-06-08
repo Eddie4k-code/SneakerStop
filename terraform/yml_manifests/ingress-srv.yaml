@@ -17,3 +17,11 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+          - path: /api/sneakers/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sneaker-srv
+                port:
+                  number: 3001
+                
