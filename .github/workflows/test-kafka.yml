@@ -1,0 +1,53 @@
+name: Test Kafka on Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-kafka:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup K8S Cluster
+        uses: angineerd/setup-kind@v0.5.0
+        with:
+          version: v0.11.1
+      
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: v1.21.0
+
+      - name: Wait for cluster to be ready for use
+        run: kubectl wait --for=condition=ready node --all --timeout=120s
+
+      - name: Apply Kafka Manifests
+        run: |
+          kubectl apply -f ./terraform/yml_manifests/kafka-broker-srv.yaml
+          kubectl apply -f ./terraform/yml_manifests/kafka-depl.yaml
+          kubectl apply -f ./terraform/yml_manifests/kafka-network.yaml
+          kubectl apply -f ./terraform/yml_manifests/kafka-srv.yaml
+          kubectl apply -f ./terraform/yml_manifests/kafka-stateful-set.yaml
+          kubectl apply -f ./terraform/yml_manifests/kcat-depl.yaml
+
+      - name: Wait for Kafka resources to bready
+        run: |
+          kubectl wait --for=condition=Ready --timeout=300s pod -l app.kubernetes.io/name=kafka
+          kubectl wait --for=condition=Ready --timeout=300s pod -l app.kubernetes.io/name=kcat
+      
+      - name: Send and Receive Kafka Message using kcat
+        run: |
+        kubectl exec deploy/kcat -- kcat -P -b kafka:9092 -t test-topic <<< "Hello, Kafka!"
+        
+        kubectl exec deploy/kcat -- kcat -C -b kafka:9092 -t test-topic -o beginning -e
+
+
+
+
+    
+
