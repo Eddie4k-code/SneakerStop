@@ -39,6 +39,10 @@ jobs:
         run: |
           kubectl wait --for=condition=Ready --timeout=300s pod --all 
           kubectl wait --for=condition=Ready --timeout=300s pod --all
+
+      - name: Test Kafka Connectivity
+        run: |
+          kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh -c 'nc -zv kafka 29092'
       
       - name: Send and Receive Kafka Message using kcat
         run: |
