@@ -20,8 +20,9 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
     await sneaker.save();
 
     //send event
-    await new Producer(Topics.SNEAKER_CREATED).send({data: "test"});
-
+    if (process.env.ENVIRONMENT != "dev") {
+        await new Producer(Topics.SNEAKER_CREATED).send({data: "test"});
+    }
 
     return res.status(201).send(sneaker);
 });
