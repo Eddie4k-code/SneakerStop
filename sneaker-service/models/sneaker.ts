@@ -10,6 +10,7 @@ interface ISneaker {
     size: number;
     price: number;
     userId: string;
+    version: number;
 }
 
 //Properties of a Sneaker Model
@@ -23,6 +24,7 @@ interface ISneakerDocument extends mongoose.Document {
     size: number;
     price: number;
     userId: string;
+    version: number
 }
 
 /* Mongo Schema for a Sneaker */
@@ -42,6 +44,11 @@ const sneakerSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
+    },
+    version: {
+        type: Number,
+        required: true,
+        default: 1
     }
 });
 

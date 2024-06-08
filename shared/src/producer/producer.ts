@@ -8,13 +8,6 @@ export abstract class GenericProducer<T extends IEvent> {
     protected producer: Producer;
     protected kafkaInstance: Kafka;
 
-    // config
-    protected kafka = new Kafka({
-        logLevel: logLevel.DEBUG,
-        brokers:["kafka:29092"], //kafka running on our local kubernetes cluster
-        clientId: 'sneaker-marketplace',
-    });
-
     
     constructor(topic: Topics, kafkaInstance: Kafka) {
         this.topic = topic;

@@ -63,9 +63,6 @@ const start = async () => {
             app.listen('3001', () => {
                 console.log("Sneaker Service Running on Port 3001 Successfully");
             });
-
-        
-            new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker', kafkaInstance).listen();
         }
 
     } catch (err) {
