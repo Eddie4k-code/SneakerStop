@@ -27,7 +27,7 @@ jobs:
     - name: Run Unit Tests
       run: |
         sudo apt-get install libcurl4
-        export ENVIRONMENT=dev
+        export ENVIRONMENT=ci
         export JWT_SECRET=secret123
         cd ${{ matrix.service_name }} && npm install && npm run test
 

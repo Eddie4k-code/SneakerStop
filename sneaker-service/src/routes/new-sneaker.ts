@@ -21,7 +21,7 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
     await sneaker.save();
 
     //send event
-    //if (process.env.ENVIRONMENT != "dev") {
+    if (process.env.ENVIRONMENT != "ci") {
         await new Producer(Topics.SNEAKER_CREATED, kafkaInstance).send({data: {
             _id: sneaker._id as string,
             title: sneaker.title,
@@ -30,7 +30,7 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
             version: sneaker.version,
             userId: sneaker.userId
         }});
-    //}
+    }
 
     return res.status(201).send(sneaker);
 });

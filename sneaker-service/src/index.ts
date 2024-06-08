@@ -56,7 +56,7 @@ const start = async () => {
     }
 
     try {
-        if (process.env.ENVIRONMENT! != "dev") {
+        if (process.env.ENVIRONMENT! != "ci") {
             await mongoose.connect(process.env.MONGO_URI!).then(() => console.log("Auth Service Connected to MongoDB"));
 
             app.listen('3001', () => {
