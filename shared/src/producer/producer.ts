@@ -10,7 +10,7 @@ export abstract class GenericProducer<T extends IEvent> {
     // config
     protected kafka = new Kafka({
         logLevel: logLevel.DEBUG,
-        brokers:["kafka:29092"],
+        brokers:["kafka:29092"], //kafka running on our local kubernetes cluster
         clientId: 'sneaker-marketplace',
     });
 
@@ -33,7 +33,7 @@ export abstract class GenericProducer<T extends IEvent> {
         });
 
 
-        console.log(`Sucessfully Produced to ${this.topic}`);
+        console.log(`Producer: Sucessfully Produced to ${this.topic}`);
         
 
         await this.producer.disconnect();
