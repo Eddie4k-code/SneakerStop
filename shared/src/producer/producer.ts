@@ -28,7 +28,7 @@ export abstract class GenericProducer<T extends IEvent> {
 
         await this.producer.send({
             topic: this.topic,
-            messages: [{value: event as any}],
+            messages: [{value: JSON.stringify(event as any)}],
             acks: -1 //all
         });
 
