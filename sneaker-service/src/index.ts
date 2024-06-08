@@ -11,6 +11,7 @@ import { NewSneakerConsumer } from './event-test';
 
 
 
+
 export const app = express();
 
 app.set('trust proxy', true); //ingress-nginx proxy
@@ -51,6 +52,7 @@ const start = async () => {
             app.listen('3001', () => {
                 console.log("Sneaker Service Running on Port 3001 Successfully");
             });
+
 
             new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker').listen();
         }
