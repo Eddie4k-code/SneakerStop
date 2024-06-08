@@ -43,10 +43,6 @@ jobs:
           kubectl wait --for=condition=Ready --timeout=300s statefulset --all
           kubectl wait --for=condition=Ready --timeout=300s networkpolicy --all
 
-      - name: Test Kafka Connectivity
-        run: |
-          kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh -c 'nc -zv kafka 29092'
-      
       - name: Send and Receive Kafka Message using kcat
         run: |
           kubectl exec deploy/kcat -- kcat -P -b kafka:29092 -t test-topic <<< "Hello, Kafka!"

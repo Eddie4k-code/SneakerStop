@@ -1,5 +1,5 @@
 import express, {NextFunction, Request, Response} from 'express';
-import { errorHandler } from '@sneakerstop/shared';
+import { errorHandler, Topics } from '@sneakerstop/shared';
 import { NotFoundError } from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
@@ -7,6 +7,7 @@ import { newSneakerRouter } from './routes/new-sneaker';
 import { viewSneakerRouter } from './routes/view-sneaker';
 import { allSneakersRouter } from './routes/all-sneakers';
 import { updateSneakerRouter } from './routes/update-sneaker';
+import { NewSneakerConsumer } from './event-test';
 
 
 
@@ -55,6 +56,9 @@ const start = async () => {
     } catch (err) {
         console.log(err);
     }
+
+
+    new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker').listen();
 
     
 }

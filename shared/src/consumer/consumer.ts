@@ -32,6 +32,7 @@ export abstract class GenericConsumer<T extends IEvent> {
 
     async listen() {
         await this.consumer.connect().catch(err => console.log("Consumer had Error connecting to kafka broker"));
+        console.log(`${this.topic} Consumer Connected to kafka broker`);
         await this.consumer.subscribe({topics: [this.topic]});
         await this.consumer.run({
             eachMessage: async ({topic, message}) => {

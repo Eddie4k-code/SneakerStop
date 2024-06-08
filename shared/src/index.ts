@@ -14,6 +14,9 @@ export * from './middleware/verify-user'
 //producers
 export * from './producer/producer'
 
+// consumers
+export * from './consumer/consumer'
+
 //events
 export * from './events/event'
 export * from './events/topics'
