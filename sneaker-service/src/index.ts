@@ -51,14 +51,14 @@ const start = async () => {
             app.listen('3001', () => {
                 console.log("Sneaker Service Running on Port 3000 Successfully");
             });
+
+            new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker').listen();
         }
 
     } catch (err) {
         console.log(err);
     }
 
-
-    new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker').listen();
 
     
 }
