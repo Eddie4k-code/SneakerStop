@@ -39,6 +39,9 @@ jobs:
         run: |
           kubectl wait --for=condition=Ready --timeout=300s pod --all 
           kubectl wait --for=condition=Ready --timeout=300s pod --all
+          kubectl wait --for=condition=Ready --timeout=300s service --all
+          kubectl wait --for=condition=Ready --timeout=300s statefulset --all
+          kubectl wait --for=condition=Ready --timeout=300s networkpolicy --all
 
       - name: Test Kafka Connectivity
         run: |
