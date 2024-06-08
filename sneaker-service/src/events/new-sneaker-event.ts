@@ -7,6 +7,7 @@ export interface INewSneakerEvent extends IEvent  {
         version: number,
         title: string,
         price: number,
+        size: number
         userId: string
     }
 }

@@ -1,8 +1,8 @@
 import { verifyUser, RequestValidationError, Topics } from '@sneakerstop/shared';
 import express, {NextFunction, Request, Response} from 'express';
 import { SneakerModel } from '../../models/sneaker';
-import { Producer } from '../event-test';
 import { kafkaInstance } from '..';
+import { Producer } from '../events/producers/new-sneaker-producer';
 
 const router = express.Router();
 
@@ -21,15 +21,16 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
     await sneaker.save();
 
     //send event
-    if (process.env.ENVIRONMENT != "dev") {
+    //if (process.env.ENVIRONMENT != "dev") {
         await new Producer(Topics.SNEAKER_CREATED, kafkaInstance).send({data: {
-            _id: sneaker._id,
+            _id: sneaker._id as string,
             title: sneaker.title,
             price: sneaker.price,
             size: sneaker.size,
-            version: sneaker.version
+            version: sneaker.version,
+            userId: sneaker.userId
         }});
-    }
+    //}
 
     return res.status(201).send(sneaker);
 });

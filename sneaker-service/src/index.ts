@@ -7,7 +7,6 @@ import { newSneakerRouter } from './routes/new-sneaker';
 import { viewSneakerRouter } from './routes/view-sneaker';
 import { allSneakersRouter } from './routes/all-sneakers';
 import { updateSneakerRouter } from './routes/update-sneaker';
-import { NewSneakerConsumer } from './event-test';
 import { logLevel } from 'kafkajs';
 
 

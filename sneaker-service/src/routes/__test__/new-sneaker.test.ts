@@ -1,6 +1,10 @@
 import request from 'supertest';
 import { app } from '../..';
 
+
+
+jest.mock('../../events/producers/new-sneaker-producer');
+
 it('has a route handler listening to /api/sneakers for post requests', async () => {
 
     const response = await request(app)
