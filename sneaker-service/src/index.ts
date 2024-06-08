@@ -1,6 +1,6 @@
 import express, {NextFunction, Request, Response} from 'express';
-import { errorHandler, Topics } from '@sneakerstop/shared';
-import { NotFoundError } from '@sneakerstop/shared';
+import { errorHandler, KafkaSingleton, Topics } from '@sneakerstop/shared';
+import { NotFoundError} from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 import { newSneakerRouter } from './routes/new-sneaker';
@@ -8,6 +8,7 @@ import { viewSneakerRouter } from './routes/view-sneaker';
 import { allSneakersRouter } from './routes/all-sneakers';
 import { updateSneakerRouter } from './routes/update-sneaker';
 import { NewSneakerConsumer } from './event-test';
+import { logLevel } from 'kafkajs';
 
 
 
@@ -36,6 +37,16 @@ app.all("*", async (req: Request, res: Response, next: NextFunction) => {
 app.use(errorHandler); 
 
 
+const kafkaConfig = {
+    logLevel: logLevel.DEBUG,
+    brokers:["kafka:29092"], //kafka running on our local kubernetes cluster
+    clientId: 'sneaker-marketplace',
+}
+
+//use singleton to provide one instance of kafka :)
+export const kafkaInstance = new KafkaSingleton(kafkaConfig).setupKafkaInstance();
+
+
 
 
 const start = async () => {
@@ -53,8 +64,8 @@ const start = async () => {
                 console.log("Sneaker Service Running on Port 3001 Successfully");
             });
 
-
-            new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker').listen();
+        
+            new NewSneakerConsumer(Topics.SNEAKER_CREATED, 'new_sneaker', kafkaInstance).listen();
         }
 
     } catch (err) {

@@ -2,6 +2,7 @@ import { verifyUser, RequestValidationError, Topics } from '@sneakerstop/shared'
 import express, {NextFunction, Request, Response} from 'express';
 import { SneakerModel } from '../../models/sneaker';
 import { Producer } from '../event-test';
+import { kafkaInstance } from '..';
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
 
     //send event
     if (process.env.ENVIRONMENT != "dev") {
-        await new Producer(Topics.SNEAKER_CREATED).send({data: "test"});
+        await new Producer(Topics.SNEAKER_CREATED, kafkaInstance).send({data: "test"});
     }
 
     return res.status(201).send(sneaker);

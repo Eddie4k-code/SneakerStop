@@ -9,7 +9,6 @@ interface INewSneakerEvent extends IEvent  {
 
 //test
 export class NewSneakerConsumer extends GenericConsumer<INewSneakerEvent> {
-    topic = Topics.SNEAKER_CREATED
 
     onEvent(data: INewSneakerEvent): void {
         console.log("Event Data!", data);
