@@ -22,7 +22,10 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
 
     //send event
     //if (process.env.ENVIRONMENT != "ci") {
-        await new Producer(Topics.SNEAKER_CREATED, kafkaInstance).send({data: {
+
+        const producer = new Producer(Topics.SNEAKER_CREATED, kafkaInstance);
+
+        await producer.send({data: {
             _id: sneaker._id as string,
             title: sneaker.title,
             price: sneaker.price,
