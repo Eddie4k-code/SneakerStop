@@ -2,6 +2,7 @@ import request from 'supertest';
 import { app } from '../..';
 import { SneakerModel } from '../../../models/sneaker';
 
+jest.mock('../../events/producers/new-sneaker-producer');
 
 const newSneaker = async (n: number) => {
 

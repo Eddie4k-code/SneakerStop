@@ -3,6 +3,8 @@ import { app } from '../..';
 import { SneakerModel } from '../../../models/sneaker';
 import mongoose from 'mongoose';
 
+jest.mock('../../events/producers/new-sneaker-producer');
+
 it('return a 404 if we cannot find a sneaker', async () => {
 
     const fakeId = new mongoose.Types.ObjectId().toHexString();

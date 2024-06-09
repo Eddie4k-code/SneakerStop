@@ -3,7 +3,7 @@ import { app } from '../..';
 import { SneakerModel } from '../../../models/sneaker';
 import mongoose from 'mongoose';
 
-
+jest.mock('../../events/producers/new-sneaker-producer');
 
 it('if sneaker not found return a 404', async () => {
     const id = new mongoose.Types.ObjectId().toHexString();
