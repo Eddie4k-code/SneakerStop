@@ -5,8 +5,14 @@ import { IEvent } from "@sneakerstop/shared";
 
 
 
+export const kafkaInstance = {
+    setupKafkaInstance: () => {
+        console.log("test");
+    }
+}
+
 export const producer = {
-    send: (data: any) => {
+    send: async (data: any) => {
         console.log("test");
     }
 }

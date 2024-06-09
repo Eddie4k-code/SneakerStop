@@ -7,7 +7,7 @@ import { newSneakerRouter } from './routes/new-sneaker';
 import { viewSneakerRouter } from './routes/view-sneaker';
 import { allSneakersRouter } from './routes/all-sneakers';
 import { updateSneakerRouter } from './routes/update-sneaker';
-import { logLevel } from 'kafkajs';
+import { Kafka, logLevel } from 'kafkajs';
 
 
 
@@ -43,7 +43,10 @@ const kafkaConfig = {
 }
 
 //use singleton to provide one instance of kafka :)
-export const kafkaInstance = new KafkaSingleton(kafkaConfig).setupKafkaInstance();
+export const kafka = new KafkaSingleton(kafkaConfig);
+export const kafkaInstance = kafka.setupKafkaInstance();
+
+
 
 
 
