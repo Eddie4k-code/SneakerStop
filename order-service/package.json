@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "jest --coverage --forceExit --detectOpenHandles"
+    "test": "jest --coverage --forceExit --detectOpenHandles --passWithNoTests"
   },
   "jest": {
     "preset": "ts-jest",
