@@ -20,6 +20,7 @@ export * from './consumer/consumer'
 //events
 export * from './events/event'
 export * from './events/topics'
+export * from './events/status'
 
 //kafka instance
 export * from './kafka_singleton/kafka-singleton'
