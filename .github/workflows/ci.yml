@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        service_name: [auth-service, sneaker-service]
+        service_name: [auth-service, sneaker-service, order-service]
 
     runs-on: ubuntu-latest
     steps:

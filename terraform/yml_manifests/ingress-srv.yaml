@@ -24,4 +24,11 @@ spec:
                 name: sneaker-srv
                 port:
                   number: 3001
+          - path: /api/orders/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: order-srv
+                port:
+                  number: 3002
                 
