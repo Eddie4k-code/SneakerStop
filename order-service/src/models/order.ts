@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import {OrderStatus} from '@sneakerstop/shared';
 
 /* Model Creation for Order */
 
@@ -7,8 +7,8 @@ import mongoose from 'mongoose';
 //Properties of a Order
 interface IOrder {
     userId: string;
-    status: string;
-    ticket: SneakerDoc; //ref to a sneaker!
+    status: OrderStatus;
+    sneaker: SneakerDoc; //ref to a sneaker!
 
 }
 
@@ -20,8 +20,8 @@ interface IOrderModel extends mongoose.Model<IOrder> {
 //Properties of a Order Document
 interface IOrderDocument extends mongoose.Document {
     userId: string;
-    status: string;
-    ticket: SneakerDoc; //ref to a sneaker!
+    status: OrderStatus;
+    sneaker: SneakerDoc; //ref to a sneaker!
 }
 
 /* Mongo Schema for a Order */
@@ -32,7 +32,9 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: true
+        required: true,
+        enum: Object.values(OrderStatus),
+        default: OrderStatus.Created 
     },
     sneaker: {
         type: mongoose.Schema.Types.ObjectId,
