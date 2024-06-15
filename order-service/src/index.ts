@@ -3,11 +3,8 @@ import { errorHandler, KafkaSingleton, Topics } from '@sneakerstop/shared';
 import { NotFoundError} from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
-import { newSneakerRouter } from './routes/new-sneaker';
-import { viewSneakerRouter } from './routes/view-sneaker';
-import { allSneakersRouter } from './routes/all-sneakers';
-import { updateSneakerRouter } from './routes/update-sneaker';
 import { Kafka, logLevel } from 'kafkajs';
+import { newOrderRouter } from './routes/new-order';
 
 
 
@@ -24,10 +21,7 @@ app.use(
     })
 )   
 
-app.use(newSneakerRouter);
-app.use(viewSneakerRouter);
-app.use(allSneakersRouter);
-app.use(updateSneakerRouter);
+app.use(newOrderRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());

@@ -15,6 +15,7 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
     if (!validId) {
         next(new RequestValidationError("Invalid ID"));
+        return;
     }
 
     /* Find sneaker that is being requested for order */
@@ -23,6 +24,7 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
     /* Check that the sneaker is valid/exists*/
     if (!sneaker) {
         next(new NotFoundError());
+        return;
     }
 
      /* Check if there is an existing order with this sneaker already, that does not have status of cancelled */
@@ -40,6 +42,7 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
      if (orderExists) {
         next(new GenericRequestError("Sneaker is no longer available at this time."))
+        return;
      }
 
 
