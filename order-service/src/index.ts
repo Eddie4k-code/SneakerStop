@@ -39,7 +39,8 @@ const kafkaConfig = {
 }
 
 //use singleton to provide one instance of kafka :)
-export const kafka = new KafkaSingleton(kafkaConfig);
+const kafka = new KafkaSingleton(kafkaConfig);
+export const kafkaInstance = kafka.setupKafkaInstance();
 
 
 

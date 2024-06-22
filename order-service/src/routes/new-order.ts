@@ -1,14 +1,18 @@
 import express, {NextFunction, Request, Response} from 'express';
-import {GenericRequestError, NotFoundError, OrderStatus, RequestValidationError, verifyUser} from '@sneakerstop/shared';
+import {GenericRequestError, NotFoundError, OrderStatus, RequestValidationError, Topics, verifyUser} from '@sneakerstop/shared';
 import mongoose from 'mongoose';
 import { SneakerModel } from '../models/sneaker';
 import {OrderModel} from '../models/order';
+import { OrderCreatedProducer } from '../events/producers/order-created-producer';
+import { kafkaInstance } from '..';
 
 const router = express.Router();
 //new order! 
 router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: NextFunction) => {
 
     const {sneakerId} = req.body;
+
+    const producer = new OrderCreatedProducer(Topics.ORDER_CREATED, kafkaInstance);
 
     //check that ID is valid.
     const validId = mongoose.Types.ObjectId.isValid(sneakerId);
@@ -49,6 +53,7 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
     //create order
 
+
     const order = OrderModel.createOrder({
         userId: req.currentUser!.id,
         status: OrderStatus.Created,
@@ -59,6 +64,15 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
 
     //send create order event
+    await producer.send({data:{
+        _id: order._id as string,
+        status: order.status,
+        userId: order.userId,
+        sneaker: {
+            _id: order.sneaker._id as string,
+            price: order.sneaker.price
+        }
+    }});
 
     
 

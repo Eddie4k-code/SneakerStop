@@ -6,6 +6,9 @@ import { OrderModel } from '../../models/order';
 import { OrderStatus } from '@sneakerstop/shared';
 
 
+jest.mock('../../events/producers/new-order-producer');
+
+
 it('returns not found if the sneaker does not exist', async () => {
 
     const sneakerId = new mongoose.Types.ObjectId();
