@@ -63,13 +63,6 @@ it('successfully creates order for a sneaker', async () => {
 
     await sneaker.save();
 
-    const order = OrderModel.createOrder({
-        sneaker,
-        userId: 'lasiohwefhioew',
-        status: OrderStatus.Created
-    });
-
-    await order.save();
 
     await request(app)
         .post('/api/orders')

@@ -49,7 +49,7 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
     //create order
 
-    const order = await OrderModel.createOrder({
+    const order = OrderModel.createOrder({
         userId: req.currentUser!.id,
         status: OrderStatus.Created,
         sneaker: sneaker!
