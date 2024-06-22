@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 import { Kafka, logLevel } from 'kafkajs';
 import { newOrderRouter } from './routes/new-order';
+import { allOrdersRouter } from './routes/all-orders';
 
 
 
@@ -22,6 +23,7 @@ app.use(
 )   
 
 app.use(newOrderRouter);
+app.use(allOrdersRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());
