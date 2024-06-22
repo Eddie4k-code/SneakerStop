@@ -72,9 +72,4 @@ it('successfully creates order for a sneaker', async () => {
         })
         .expect(201);
 
-
-
-
-
-
 });

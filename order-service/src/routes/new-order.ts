@@ -60,6 +60,8 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
     //send create order event
 
+    
+
     return res.status(201).json(order);
     
 
