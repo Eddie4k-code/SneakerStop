@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 
 //Properties of a Sneaker
-interface ISneaker {
+export interface ISneaker {
     title: string;
     size: number;
     price: number;
@@ -19,7 +19,7 @@ interface ISneakerModel extends mongoose.Model<ISneaker> {
 }
 
 //Properties of a Sneaker Mongo Document
-interface ISneakerDocument extends mongoose.Document {
+export interface ISneakerDocument extends mongoose.Document {
     title: string;
     size: number;
     price: number;

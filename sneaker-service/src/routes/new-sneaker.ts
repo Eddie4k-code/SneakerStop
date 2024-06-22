@@ -1,8 +1,10 @@
 import { verifyUser, RequestValidationError, Topics } from '@sneakerstop/shared';
 import express, {NextFunction, Request, Response} from 'express';
-import { SneakerModel } from '../../models/sneaker';
+import { ISneakerDocument, SneakerModel } from '../../models/sneaker';
 import { kafkaInstance } from '..';
 import { Producer } from '../events/producers/new-sneaker-producer';
+import { ISneakerRepository } from '../repository/ISneakerRepository';
+import { MongoSneakerRepository } from '../repository/SneakerRepository';
 
 const router = express.Router();
 
@@ -16,12 +18,17 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
     }
 
 
-    const sneaker = SneakerModel.createSneaker({title: title, price: price, size: size, userId: req.currentUser!.id, version: version});
+    const sneakerRepository: ISneakerRepository<ISneakerDocument> = new MongoSneakerRepository();
 
-    await sneaker.save();
+    const sneaker = await sneakerRepository.newSneaker({title: title, price: price, size: size, version: version, userId: req.currentUser!.id});
 
-    //send event
-    //if (process.env.ENVIRONMENT != "ci") {
+    /* used before repository was impelemented */
+    
+    //const sneaker = SneakerModel.createSneaker({title: title, price: price, size: size, userId: req.currentUser!.id, version: version});
+
+    //await sneaker.save();
+
+  
 
         const producer = new Producer(Topics.SNEAKER_CREATED, kafkaInstance);
 
@@ -33,7 +40,7 @@ router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, nex
             version: sneaker.version,
             userId: sneaker.userId
         }});
-    //}
+
 
     return res.status(201).send(sneaker);
 });

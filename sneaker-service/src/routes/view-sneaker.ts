@@ -1,6 +1,8 @@
 import { verifyUser, RequestValidationError, GenericRequestError, NotFoundError } from '@sneakerstop/shared';
 import express, {NextFunction, Request, Response} from 'express';
-import { SneakerModel } from '../../models/sneaker';
+import { ISneakerDocument, SneakerModel } from '../../models/sneaker';
+import { MongoSneakerRepository } from '../repository/SneakerRepository';
+import { ISneakerRepository } from '../repository/ISneakerRepository';
 
 const router = express.Router();
 
@@ -8,7 +10,11 @@ const router = express.Router();
 router.get('/api/sneakers/:id', async (req: Request, res: Response, next: NextFunction) => {
 
 
-    const foundSneaker = await SneakerModel.findById(req.params.id);
+    //const foundSneaker = await SneakerModel.findById(req.params.id);
+
+    const sneakerRepository: ISneakerRepository<ISneakerDocument> = new MongoSneakerRepository();
+
+    const foundSneaker = await sneakerRepository.viewSneaker(req.params.id);
 
     if (!foundSneaker) {
         next(new NotFoundError());
