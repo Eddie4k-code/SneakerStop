@@ -56,4 +56,32 @@ it('returns an error if a sneaker is in the process of already being ordered', a
 
 it('successfully creates order for a sneaker', async () => {
 
+    const sneaker = SneakerModel.createSneaker({
+        title: 'test_sneaker1233',
+        price: 30
+    });
+
+    await sneaker.save();
+
+    const order = OrderModel.createOrder({
+        sneaker,
+        userId: 'lasiohwefhioew',
+        status: OrderStatus.Created
+    });
+
+    await order.save();
+
+    await request(app)
+        .post('/api/orders')
+        .set('Cookie', global.signin())
+        .send({
+            sneakerId: sneaker._id
+        })
+        .expect(201);
+
+
+
+
+
+
 });
