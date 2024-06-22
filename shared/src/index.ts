@@ -21,6 +21,7 @@ export * from './consumer/consumer'
 export * from './events/event'
 export * from './events/topics'
 export * from './events/status'
+export * from './events/order-created'
 
 //kafka instance
 export * from './kafka_singleton/kafka-singleton'
