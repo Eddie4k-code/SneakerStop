@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 
 //Properties of a Sneaker
 interface ISneaker {
+    externalId: string
     title: string;
     price: number;
 }
@@ -37,7 +38,11 @@ const sneakerSchema = new mongoose.Schema({
 
 /* Create a Sneaker in Mongo */
 sneakerSchema.statics.createSneaker = (attrs: ISneaker): ISneakerDocument => {
-    return new SneakerModel(attrs);
+    return new SneakerModel({
+        _id: attrs.externalId,
+        title: attrs.title,
+        price: attrs.price
+    });
 }
 
 

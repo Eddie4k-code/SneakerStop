@@ -15,12 +15,10 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
         const { _id, title, price} = eventData;
 
         const sneaker = SneakerModel.createSneaker({
+            externalId: _id,
             title,
             price
         });
-
-        //overwrite id with id from sneaker-service
-        sneaker._id = _id
 
         await sneaker.save();
 

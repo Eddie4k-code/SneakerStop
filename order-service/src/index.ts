@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import { Kafka, logLevel } from 'kafkajs';
 import { newOrderRouter } from './routes/new-order';
 import { allOrdersRouter } from './routes/all-orders';
+import { SneakerCreatedConsumer } from './events/consumers/sneaker-created-consumer';
 
 
 
@@ -60,6 +61,12 @@ const start = async () => {
             app.listen('3002', () => {
                 console.log("Sneaker Service Running on Port 3002 Successfully");
             });
+
+
+            const sneakerCreatedConsumer = new SneakerCreatedConsumer(Topics.SNEAKER_CREATED, 't', kafkaInstance);
+
+            sneakerCreatedConsumer.listen();
+
         }
 
     } catch (err) {
