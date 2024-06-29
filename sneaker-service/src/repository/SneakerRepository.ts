@@ -17,17 +17,18 @@ export class MongoSneakerRepository implements ISneakerRepository<ISneakerDocume
         await sneaker.save(); 
 
         return sneaker
-    }
+    } 
 
     async allSneakers(): Promise<ISneakerDocument[]> {
         const sneakers = await SneakerModel.find({});
         return sneakers;
     }
 
-    async updateSneaker(id: string): Promise<ISneakerDocument | null> {
-        const foundSneaker = await SneakerModel.findById(id);
-
-        return foundSneaker;
+    async updateSneaker(id: string, updatedFields: Partial<ISneakerDocument>): Promise<ISneakerDocument | null> {
+        // Find the sneaker by ID and update it
+        const updatedSneaker = await SneakerModel.findByIdAndUpdate(id, updatedFields, { new: true });
+    
+        return updatedSneaker;
     }
 
     async viewSneaker(id: string): Promise<ISneakerDocument | null> {
