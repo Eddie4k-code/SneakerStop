@@ -28,7 +28,8 @@ it('returns an error if a sneaker is in the process of already being ordered', a
 
     const sneaker = SneakerModel.createSneaker({
         title: 'test_sneaker12',
-        price: 30
+        price: 30,
+        externalId: '3450973547902r9y80hiofwer'
     });
 
     await sneaker.save();
@@ -61,7 +62,8 @@ it('successfully creates order for a sneaker', async () => {
 
     const sneaker = SneakerModel.createSneaker({
         title: 'test_sneaker1233',
-        price: 30
+        price: 30,
+        externalId: '438094327809432809342098feoihfweiuhfweiohuwfewoiknj'
     });
 
     await sneaker.save();
