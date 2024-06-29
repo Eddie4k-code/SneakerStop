@@ -10,7 +10,7 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
     
     async onEvent(data: any) {
 
-        let eventData = JSON.parse(data.data);
+        let eventData = data.data;
 
         const { _id, title, price} = eventData;
 
