@@ -33,8 +33,6 @@ const sneakerSchema = new mongoose.Schema({
         required: true,
         min: 0
     }
-}, {
-    _id: false
 });
 
 

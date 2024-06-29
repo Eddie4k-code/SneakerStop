@@ -25,11 +25,13 @@ it('returns not found if the sneaker does not exist', async () => {
 
 it('returns an error if a sneaker is in the process of already being ordered', async () => {
 
+    let sneakerExternalId = new mongoose.Types.ObjectId().toHexString();
+
 
     const sneaker = SneakerModel.createSneaker({
         title: 'test_sneaker12',
         price: 30,
-        externalId: '3450973547902r9y80hiofwer'
+        externalId: sneakerExternalId
     });
 
     await sneaker.save();
@@ -60,10 +62,12 @@ it('returns an error if a sneaker is in the process of already being ordered', a
 
 it('successfully creates order for a sneaker', async () => {
 
+    let sneakerExternalId = new mongoose.Types.ObjectId().toHexString();
+
     const sneaker = SneakerModel.createSneaker({
         title: 'test_sneaker1233',
         price: 30,
-        externalId: '438094327809432809342098feoihfweiuhfweiohuwfewoiknj'
+        externalId: sneakerExternalId
     });
 
     await sneaker.save();

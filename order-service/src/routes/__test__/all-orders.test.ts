@@ -32,10 +32,12 @@ it ('gets all orders for a user', async () => {
 
     for(var s of sneakers) {
 
+        let sneakerExternalId = new mongoose.Types.ObjectId().toHexString();
+
         let sneaker = await SneakerModel.createSneaker({
             title: s.title,
             price: s.price,
-            externalId: '49073472589978234978423987324'
+            externalId: sneakerExternalId
         }).save();
 
         await OrderModel.createOrder({
