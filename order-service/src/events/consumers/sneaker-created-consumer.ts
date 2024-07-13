@@ -12,7 +12,7 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
 
 
   
-        let jsonData = JSON.parse(data.value.data);
+        let jsonData = JSON.parse(data.value);
 
     
         const sneaker = SneakerModel.createSneaker({
