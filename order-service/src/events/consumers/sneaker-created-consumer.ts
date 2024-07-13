@@ -14,6 +14,8 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
   
         let jsonData = JSON.parse(data.value);
 
+        console.log(jsonData);
+
     
         const sneaker = SneakerModel.createSneaker({
             externalId: jsonData._id,
