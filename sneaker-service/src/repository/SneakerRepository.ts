@@ -1,3 +1,4 @@
+import { GenericRequestError } from "@sneakerstop/shared";
 import { ISneaker, ISneakerDocument, SneakerModel } from "../../models/sneaker";
 import { ISneakerRepository } from "./ISneakerRepository";
 
@@ -12,7 +13,14 @@ export class MongoSneakerRepository implements ISneakerRepository<ISneakerDocume
     
     async newSneaker(attrs: ISneaker): Promise<ISneakerDocument> {
 
+        const sneakerExists = await SneakerModel.findOne({title: attrs.title});
+
+        if (sneakerExists) {
+            throw new GenericRequestError("Sneaker with that title already exists");
+        }
+        
         const sneaker = SneakerModel.createSneaker({title: attrs.title, price: attrs.price, size: attrs.size, userId: attrs.userId, version: attrs.version});
+        
 
         await sneaker.save(); 
 

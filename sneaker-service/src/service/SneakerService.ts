@@ -20,6 +20,7 @@ export class SneakerService implements ISneakerService<ISneakerDocument> {
             throw new RequestValidationError("Title, Price and Size must be fulfilled..");
         }
 
+
         const sneaker = await this._sneakerRepository.newSneaker({title: attrs.title, price: attrs.price, size: attrs.size, version: attrs.version, userId: attrs.userId});
 
         // need to create an abstract implementation that can be injected into the service for producer :)

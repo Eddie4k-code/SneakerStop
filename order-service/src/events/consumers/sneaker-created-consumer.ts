@@ -25,7 +25,7 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
 
         await sneaker.save();
 
-        console.log("Processed sneaker-created event in order-service", data.value.data);
+        console.log("Processed sneaker-created event in order-service", jsonData.data);
 
 
     }
