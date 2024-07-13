@@ -10,17 +10,17 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
     
     async onEvent(data: any) {
 
-       
-
-        const sneaker = SneakerModel.createSneaker({
+    
+        /* const sneaker = SneakerModel.createSneaker({
             externalId: data.data._id,
             title: data.data.title,
             price: data.data.price
-        });
+        }); 
 
         await sneaker.save();
-
-        console.log("Processed sneaker-created event in order-service", data.data);
+*/
+        console.log(data);
+        console.log("Processed sneaker-created event in order-service");
 
 
     }

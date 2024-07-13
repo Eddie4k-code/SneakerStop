@@ -11,7 +11,7 @@ import { SneakerService } from '../service/SneakerService';
 const router = express.Router();
 
 
-//inject sneaker repository into service
+//inject sneaker repository into service through constructor
 const sneakerService: ISneakerService<ISneakerDocument> = new SneakerService(new MongoSneakerRepository());
 
 
