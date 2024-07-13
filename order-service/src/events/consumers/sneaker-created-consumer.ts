@@ -11,14 +11,14 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
     async onEvent(data: any) {
 
 
-        console.log(data.value);
-        console.log(JSON.parse(data.value));
+  
+        let jsonData = JSON.parse(data.value.data);
 
     
         const sneaker = SneakerModel.createSneaker({
-            externalId: data.value.data._id,
-            title: data.value.data.title,
-            price: data.value.data.price
+            externalId: jsonData._id,
+            title: jsonData.title,
+            price: jsonData.price
         }); 
 
         await sneaker.save();
