@@ -9,11 +9,10 @@ This project is a proof of concept for a sneaker marketplace built on a microser
 The architecture of the system is based on microservices, each serving a specific function within the sneaker marketplace ecosystem. Kafka acts as the central event bus for communication between these services, enabling decoupling and scalability.
 
 
-## How is concurrency maintained?
-Concurrent operations on the databases will occur, this will be 
+## What About Order of Events/Messages?
+Kafka provides the ability to associate keys with messages. When a message in Kafka is sent with a key, all messages sharing the same key will always go to the same parition in a topic. This helps maintain proper ordering of messages. Without a key, messages are distributed in a round-robin fashion across paritions in a topic.
 
-
-## What about duplicate events?
+## What About Duplicate Events?
 ### Idempotent
 Within the Kafka Producers we have set `idempotent` to `true`. This configuration will help ensure that duplicate messages are not introduced due to events such as unexpected retries. When a producer sends a message, it will be assigned a Producer Id. The Kafka Broker will keep track of the largest PID-Sequence number combination sucessfully written, discarding lower sequence numbers.
 
@@ -21,6 +20,9 @@ Within the Kafka Producers we have set `idempotent` to `true`. This configuratio
 
 
 ## Main Technologies Used
+- Typescript
+- Express
+- Node.Js
 - Kafka
 - Docker
 - Kubernetes (k8s)
