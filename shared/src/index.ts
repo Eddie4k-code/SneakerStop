@@ -23,6 +23,7 @@ export * from './events/topics'
 export * from './events/status'
 export * from './events/order-created'
 export * from './events/sneaker-created'
+export * from './events/sneaker-updated'
 
 //kafka instance
 export * from './kafka_singleton/kafka-singleton'
