@@ -7,12 +7,14 @@ export abstract class GenericProducer<T extends IEvent> {
     topic: Topics;
     protected producer: Producer;
     protected kafkaInstance: Kafka;
+    protected key: string; /* Key to help ordering of messages for the same sneaker! */
 
     
-    constructor(topic: Topics, kafkaInstance: Kafka) {
+    constructor(topic: Topics, kafkaInstance: Kafka, key: string) {
         this.topic = topic;
         this.kafkaInstance = kafkaInstance;
         this.producer = this.kafkaInstance.producer({maxInFlightRequests: 1, idempotent: true, retry: {initialRetryTime: 100, retries:5}}); //EOS Semantics 
+        this.key = key
     }
 
 
@@ -22,7 +24,7 @@ export abstract class GenericProducer<T extends IEvent> {
 
         await this.producer.send({
             topic: this.topic,
-            messages: [{value: JSON.stringify(event as any)}],
+            messages: [{key: this.key, value: JSON.stringify(event as any)}],
             acks: -1 //all
         });
 
