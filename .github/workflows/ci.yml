@@ -37,7 +37,7 @@ jobs:
   build:
     strategy:
       matrix:
-        service_name: [${{fromJson(needs.changed_files.outputs.services)}}]
+        service_name: [${{ fromJson(needs.changed_files.outputs.services) }}]
 
     runs-on: ubuntu-latest
     steps:
