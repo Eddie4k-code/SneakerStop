@@ -24,7 +24,7 @@ export class SneakerService implements ISneakerService<ISneakerDocument> {
         const sneaker = await this._sneakerRepository.newSneaker({title: attrs.title, price: attrs.price, size: attrs.size, version: attrs.version, userId: attrs.userId});
 
         // need to create an abstract implementation that can be injected into the service for producer :)
-        const producer = new Producer(Topics.SNEAKER_CREATED, kafkaInstance, sneaker._id as string);
+        const producer = new Producer(Topics.SNEAKER_CREATED, kafkaInstance, "Test this");
 
         await producer.send({data: {
             _id: sneaker._id as string,
