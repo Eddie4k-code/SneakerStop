@@ -12,8 +12,6 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
     const {sneakerId} = req.body;
 
-    const producer = new OrderCreatedProducer(Topics.ORDER_CREATED, kafkaInstance);
-
     //check that ID is valid.
     const validId = mongoose.Types.ObjectId.isValid(sneakerId);
 
@@ -61,6 +59,8 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
     })
 
     await order.save();
+
+    const producer = new OrderCreatedProducer(Topics.ORDER_CREATED, kafkaInstance, order._id as string);
 
 
     //send create order event
