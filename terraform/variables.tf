@@ -4,5 +4,10 @@ variable "k8s_config_path" {
     default = "~/.kube/config"
 }
 
+variable "env" {
+    default = "dev"
+    description "the current environment"
+}
+
 
 
