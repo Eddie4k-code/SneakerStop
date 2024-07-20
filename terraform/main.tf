@@ -12,8 +12,7 @@ locals {
     */
     all_yamls_decoded = {
         for filename in local.all_yamls : filename => yamldecode(file("./yml_manifests/${filename}"))
-    }
-    
+    }  
 }
 
 /* This module is used to apply kubernetes manifests */
