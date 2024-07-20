@@ -18,26 +18,31 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
 
-      - name: List all changed files
+      - name: List all changed files and determine services
+        id: filter-changed-services
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
+          SERVICES=""
           for file in ${ALL_CHANGED_FILES}; do
             case "$file" in
               auth-service/*) SERVICES="$SERVICES auth-service" ;;
               sneaker-service/*) SERVICES="$SERVICES sneaker-service" ;;
-              order-service/* SERVICES="$SERVICES order-service" ;;
+              order-service/*) SERVICES="$SERVICES order-service" ;;
             esac
           done
           SERVICES=$(echo "$SERVICES" | tr ' ' '\n' | sort -u | tr '\n' ' ')
           echo "::set-output name=services::$(echo $SERVICES | tr ' ' ',')"
         shell: bash
 
-
   build:
+    needs: changed_files
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         service_name: [${{ fromJson(needs.changed_files.outputs.services) }}]
+        exclude:
+          - service_name: ""
 
     runs-on: ubuntu-latest
     steps:
