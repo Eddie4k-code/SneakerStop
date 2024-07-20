@@ -23,14 +23,21 @@ jobs:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
           for file in ${ALL_CHANGED_FILES}; do
-            echo "$file was changed"
+            case "$file" in
+              auth-service/*) SERVICES="$SERVICES auth-service" ;;
+              sneaker-service/*) SERVICES="$SERVICES sneaker-service" ;;
+              order-service/* SERVICES="$SERVICES order-service" ;;
+            esac
           done
+          SERVICES=$(echo "$SERVICES" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+          echo "::set-output name=services::$(echo $SERVICES | tr ' ' ',')"
+        shell: bash
 
 
   build:
     strategy:
       matrix:
-        service_name: [auth-service, sneaker-service, order-service]
+        service_name: [${{fromJson(needs.changed_files.outputs.services)}}]
 
     runs-on: ubuntu-latest
     steps:
