@@ -4,7 +4,7 @@ locals {
         Grab all YAML Files located in the yml_manifests directory
         returns a set of strings
     */
-    all_yamls = fileset("$./yml_manifests", "*.yaml")
+    all_yamls = fileset("./yml_manifests", "*.yaml")
 
     /*
         Grab each file based on the names in all_yamls and decode each yaml file into an object

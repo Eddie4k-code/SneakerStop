@@ -8,6 +8,36 @@ import { viewSneakerRouter } from './routes/view-sneaker';
 import { allSneakersRouter } from './routes/all-sneakers';
 import { updateSneakerRouter } from './routes/update-sneaker';
 import { Kafka, logLevel } from 'kafkajs';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+
+const swaggerOptions = {
+    swaggerDefinition: {
+      openapi: '3.0.0',
+      info: {
+        title: 'Sneaker API',
+        version: '1.0.0',
+        description: 'API documentation for the Sneaker application',
+      },
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+          },
+        },
+      },
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+    },
+    apis: ['./src/routes/*.ts'], // Path to the API docs
+  };
+
+const specs = swaggerJSDoc(swaggerOptions);
 
 
 
@@ -15,6 +45,8 @@ import { Kafka, logLevel } from 'kafkajs';
 export const app = express();
 
 app.set('trust proxy', true); //ingress-nginx proxy
+
+app.use('/api-docs/sneakers', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(express.json());
 app.use(

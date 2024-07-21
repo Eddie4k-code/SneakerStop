@@ -6,11 +6,9 @@ variable "k8s_config_path" {
 
 variable "env" {
     default = "dev"
-    description "the current environment"
 }
 
 variable "jwt_secret" {
-    description = "Secret used for JWT"
     sensitive   = true
 }
 
