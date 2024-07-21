@@ -9,5 +9,10 @@ variable "env" {
     description "the current environment"
 }
 
+variable "jwt_secret" {
+    description = "Secret used for JWT"
+    sensitive   = true
+}
+
 
 
