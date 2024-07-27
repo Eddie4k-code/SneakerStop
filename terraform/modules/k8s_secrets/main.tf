@@ -1,4 +1,4 @@
-resource "kubernetes_secret" "jwt_secret" {
+resource "kubernetes_secret" "jwt-secret" {
   metadata {
     name = "jwt-secret"
     namespace = "default"
