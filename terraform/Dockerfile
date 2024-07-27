@@ -15,6 +15,8 @@ COPY ./modules ./modules
 # Copy the local Terraform configuration files into the container
 COPY ./${ENV} ./${ENV}
 
+RUN [ "cd" "./${ENV}"]
+
 RUN ["terraform", "init"]
 
 RUN ["terraform", "validate"]
