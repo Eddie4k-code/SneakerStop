@@ -19,7 +19,6 @@ describe('OrderCreatedConsumer', () => {
 
   it('should process order-created event', async () => {
     const data = {
-        data: {
             _id: new mongoose.Types.ObjectId().toHexString(),
             status: OrderStatus.Created,
             userId: "al;sdkffeieffewfweefw",
@@ -27,16 +26,20 @@ describe('OrderCreatedConsumer', () => {
                 _id: "fewfwef",
                 price: 120
             }
-        }
     }
 
-    await orderCreatedConsumer.onEvent({value: data});
+    const mockEvent = {
+        value: JSON.stringify({data})
+    }
+    
+
+    await orderCreatedConsumer.onEvent(mockEvent);
 
     expect(OrderModel.createOrder).toHaveBeenCalledWith({
-      externalId: data.data._id,
-      userId: data.data.userId,
-      price: data.data.sneaker.price,
-      status: data.data.status
+      externalId: data._id,
+      userId: data.userId,
+      price: data.sneaker.price,
+      status: data.status
     });
   });
 });
