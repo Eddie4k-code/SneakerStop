@@ -32,7 +32,7 @@ describe('OrderCreatedConsumer', () => {
        }
     }
 
-    await orderCreatedConsumer.onEvent(data);
+    await orderCreatedConsumer.onEvent(JSON.stringify(data));
 
     expect(OrderModel.createOrder).toHaveBeenCalledWith({
       externalId: data.value.data._id,
