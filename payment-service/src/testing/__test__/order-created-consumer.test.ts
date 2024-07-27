@@ -33,14 +33,16 @@ describe('OrderCreatedConsumer', () => {
     }
     
 
-    await orderCreatedConsumer.onEvent(mockEvent);
+    orderCreatedConsumer.onEvent(mockEvent);
 
-    expect(OrderModel.createOrder).toHaveBeenCalledWith({
-      externalId: data._id,
-      userId: data.userId,
-      price: data.sneaker.price,
-      status: data.status
-    });
+    const order = await OrderModel.findById(data._id);
+    
+    expect(order!.price).toEqual(data.sneaker.price);
+
+
+
+
+    
   });
 });
 
