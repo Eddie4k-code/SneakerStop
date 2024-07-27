@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Terraform via Docker
+      - name: Build Terraform via Docker and Validate
         run: |
           cd terraform
           docker build -t ${{ matrix.env }}-tf-test --build-arg ENV=${{ matrix.env }} .
@@ -27,7 +27,7 @@ jobs:
   build:
     strategy:
       matrix:
-        service_name: [auth-service, sneaker-service, order-service]
+        service_name: [auth-service, sneaker-service, order-service, payment-service]
 
     runs-on: ubuntu-latest
     steps:
