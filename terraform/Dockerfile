@@ -18,6 +18,8 @@ COPY ./${ENV} ./${ENV}
 # Combine the cd command with subsequent commands
 RUN cd ./${ENV}
 
+RUN ls
+
 # Set the Command to Terraform
-CMD cd ./${ENV} && terraform init && terraform validate
+CMD terraform init && terraform validate
 
