@@ -1,9 +1,10 @@
 import express, {NextFunction, Request, Response} from 'express';
-import { errorHandler, KafkaSingleton, Topics } from '@sneakerstop/shared';
+import { errorHandler, GenericConsumer, IOrderCreatedEvent, KafkaSingleton, Topics } from '@sneakerstop/shared';
 import { NotFoundError} from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 import { logLevel } from 'kafkajs';
+import { OrderCreatedConsumer } from './events/consumers/order-created-consumer';
 
 
 
@@ -58,6 +59,12 @@ const start = async () => {
             app.listen('3003', () => {
                 console.log("Sneaker Service Running on Port 3002 Successfully");
             });
+
+            const orderCreatedConsumer: GenericConsumer<IOrderCreatedEvent> = new OrderCreatedConsumer(Topics.ORDER_CREATED, 'order-created-from-payment-service', kafkaInstance);
+
+            orderCreatedConsumer.listen();
+
+
         }
 
     } catch (err) {

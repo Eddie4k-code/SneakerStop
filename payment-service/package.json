@@ -31,6 +31,7 @@
     "jsonwebtoken": "^9.0.2",
     "kafkajs": "^2.2.4",
     "mongoose": "^8.4.0",
+    "ts-jest-mocker": "^1.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

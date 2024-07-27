@@ -22,3 +22,5 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_SECRET
+            - name: MONGO_URI
+              value: mongodb://sneaker-mongo-srv:27017/payment
