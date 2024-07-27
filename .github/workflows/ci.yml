@@ -19,8 +19,8 @@ jobs:
 
       - name: Build Terraform via Docker
         run: |
-          cd terraform/${{ matrix.env }}
-          docker build -t ${{ matrix.env }}-tf-test --build-arg ENV=${{ matrix.env }} . 
+          cd terraform
+          docker build -t ${{ matrix.env }}-tf-test --build-arg ENV=${{ matrix.env }} .
 
       - name: Terraform Validate
         run: |
