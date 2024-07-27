@@ -19,4 +19,4 @@ COPY ./${ENV} ./${ENV}
 RUN ls -la ./${ENV}
 
 # Set the command to run Terraform commands
-CMD sh -c "cd ./${ENV} && terraform init && terraform validate"
+ENTRYPOINT sh -c "cd ./${ENV} && terraform init && terraform validate"
