@@ -26,7 +26,13 @@ Kafka provides the ability to associate keys with messages. When a message in Ka
 Within the Kafka Producers we have set `idempotent` to `true`. This configuration will help ensure that duplicate messages are not introduced due to events such as unexpected retries. When a producer sends a message, it will be assigned a Producer Id. The Kafka Broker will keep track of the largest PID-Sequence number combination sucessfully written, discarding lower sequence numbers.
 
 
+## Runbook
 
+## Provision Infrastructure
+Within the root directory `make apply` will provision all needed infrastructure.
+
+## Tear-Down Infrastructure
+Within the root directory `make destroy` will destroy all provisioned infrastructure.
 
 ## Main Technologies Used
 - Typescript
