@@ -15,11 +15,8 @@ COPY ./modules ./modules
 # Copy the local Terraform configuration files into the container
 COPY ./${ENV} ./${ENV}
 
-# Combine the cd command with subsequent commands
-RUN cd ./${ENV}
+# List contents for debugging
+RUN ls -la ./${ENV}
 
-RUN ls
-
-# Set the Command to Terraform
-CMD terraform init && terraform validate
-
+# Set the command to run Terraform commands
+CMD sh -c "cd ./${ENV} && terraform init && terraform validate"
