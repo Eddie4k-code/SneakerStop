@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"helm","Source":"../modules/helm","Dir":"../modules/helm"},{"Key":"manifest","Source":"../modules/manifest","Dir":"../modules/manifest"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"helm","Source":"../modules/helm","Dir":"../modules/helm"},{"Key":"k8s_secrets","Source":"../modules/k8s_secrets","Dir":"../modules/k8s_secrets"},{"Key":"manifest","Source":"../modules/manifest","Dir":"../modules/manifest"}]}

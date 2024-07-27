@@ -40,3 +40,12 @@ module "helm" {
         helm = helm
     }
 }
+
+/* k8s Secret Creation */
+module "k8s_secrets" {
+    source = "../modules/k8s_secrets"
+
+    providers = {
+        kubernetes = kubernetes
+    }
+}
