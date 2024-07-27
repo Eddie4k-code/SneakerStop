@@ -14,13 +14,13 @@ export class OrderCreatedConsumer extends GenericConsumer<IOrderCreatedEvent> {
         
         let jsonData = JSON.parse(data.value);
 
-        const {_id, userId, price, status} = jsonData.data;
+        const {_id, userId, sneaker, status} = jsonData.data;
 
     
         const order = OrderModel.createOrder({
             externalId: _id,
             userId: userId,
-            price: price,
+            price: sneaker.price,
             status: status
         }); 
 

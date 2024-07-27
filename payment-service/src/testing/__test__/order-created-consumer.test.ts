@@ -31,10 +31,10 @@ describe('OrderCreatedConsumer', () => {
     await orderCreatedConsumer.onEvent(data);
 
     expect(OrderModel.createOrder).toHaveBeenCalledWith({
-      externalId: '12345',
-      userId: 'user1',
-      price: 100,
-      status: 'created'
+      externalId: data._id,
+      userId: data.userId,
+      price: data.sneaker.price,
+      status: data.status
     });
   });
 });
