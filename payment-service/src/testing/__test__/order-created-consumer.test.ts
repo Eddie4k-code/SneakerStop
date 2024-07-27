@@ -5,22 +5,6 @@ import { OrderModel } from "../../models/order";
 import { OrderCreatedConsumer } from "../../events/consumers/order-created-consumer";
 import { kafkaInstance } from "../..";
 
-const setup = async () => {
-    const data: IOrderCreatedEvent = {
-        data: {
-            _id: new mongoose.Types.ObjectId().toHexString(),
-            status: OrderStatus.Created,
-            userId: "al;sdkffeieffewfweefw",
-            sneaker: {
-                _id: "fewfwef",
-                price: 120
-            }
-        }
-    }
-
-
-    return data;
-}
 
 
 describe('OrderCreatedConsumer', () => {
@@ -34,18 +18,17 @@ describe('OrderCreatedConsumer', () => {
 
 
   it('should process order-created event', async () => {
-    const mockEvent = {
-      value: JSON.stringify({
-        data: {
-          _id: '12345',
-          userId: 'user1',
-          price: 100,
-          status: 'created'
+    const data = {
+        _id: new mongoose.Types.ObjectId().toHexString(),
+        status: OrderStatus.Created,
+        userId: "al;sdkffeieffewfweefw",
+        sneaker: {
+            _id: "fewfwef",
+            price: 120
         }
-      })
-    };
+    }
 
-    await orderCreatedConsumer.onEvent(mockEvent);
+    await orderCreatedConsumer.onEvent(data);
 
     expect(OrderModel.createOrder).toHaveBeenCalledWith({
       externalId: '12345',
