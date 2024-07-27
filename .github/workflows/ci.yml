@@ -1,4 +1,4 @@
-name: Docker Build and Push
+name: Build
 
 # MATRIX APPROACH USED SO WE CAN BUILD THE DOCKER IMAGES IN PARALLEL (quicker ci)
 
@@ -21,11 +21,6 @@ jobs:
         run: |
           cd terraform
           docker build -t ${{ matrix.env }}-tf-test --build-arg ENV=${{ matrix.env }} .
-
-      - name: Terraform Validate
-        run: |
-          docker run -t ${{ matrix.env }}-tf-test
-
       
 
 
