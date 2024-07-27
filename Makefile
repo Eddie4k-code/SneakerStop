@@ -10,9 +10,8 @@ apply:
 	
 # Destroys all Kubernetes infrastructure
 destroy:
-	kubectl delete secret jwt-secret
-	@cd $(CURDIR)/terraform/$(ENV) && terraform init && terraform destroy --auto-approve 
-	@kubectl delete namespace ingress-nginx
+	@kubectl delete secret jwt-secret && \
+	cd $(CURDIR)/terraform/$(ENV) && terraform init && terraform destroy --auto-approve 
 
 
 

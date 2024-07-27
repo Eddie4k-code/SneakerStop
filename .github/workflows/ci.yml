@@ -7,6 +7,28 @@ on:
     branches:
       - master 
 jobs:
+
+  terraform-validate:
+    strategy:
+      matrix:
+        env: [dev]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Terraform via Docker
+        run: |
+          cd terraform/${{ matrix.env }}
+          docker build -t ${{ matrix.env }}-tf-test --build-arg ENV=${{ matrix.env }} 
+
+      - name: Terraform Validate
+        run: |
+          docker run -t ${{ matrix.env }}-tf-test
+
+      
+
+
   build:
     strategy:
       matrix:
