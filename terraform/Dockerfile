@@ -15,11 +15,8 @@ COPY ./modules ./modules
 # Copy the local Terraform configuration files into the container
 COPY ./${ENV} ./${ENV}
 
-RUN [ "cd" "./${ENV}"]
-
-RUN ["terraform", "init"]
-
-RUN ["terraform", "validate"]
+# Combine the cd command with subsequent commands
+RUN cd ./${ENV} && terraform init && terraform validate
 
 # Set the entrypoint to Terraform
 ENTRYPOINT [ "terraform", "plan" ]
