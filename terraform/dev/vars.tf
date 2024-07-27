@@ -10,7 +10,6 @@ variable "env" {
 
 variable "jwt_secret" {
     sensitive   = true
+    default = "123"
 }
-
-
 

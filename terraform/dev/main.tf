@@ -18,6 +18,25 @@ locals {
 /* This module is used to apply kubernetes manifests */
 module "manifest" {
     for_each = local.all_yamls_decoded
-    source = "./manifest"
+    source = "../modules/manifest"
     manifest = each.value
+
+    depends_on = [
+        module.helm
+    ]
+
+    providers = {
+        kubernetes = kubernetes
+    }
+}
+
+/* This module is used to apply helm */
+
+module "helm" {
+    source = "../modules/helm"
+
+    providers = {
+        kubernetes = kubernetes
+        helm = helm
+    }
 }
