@@ -17,6 +17,8 @@ COPY ./${ENV} ./${ENV}
 
 RUN ["terraform", "init"]
 
+RUN ["terraform", "validate"]
+
 # Set the entrypoint to Terraform
-ENTRYPOINT [ "terraform", "validate" ]
+ENTRYPOINT [ "terraform", "plan" ]
 
