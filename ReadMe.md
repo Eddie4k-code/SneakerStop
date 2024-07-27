@@ -1,5 +1,7 @@
 # Sneaker Marketplace PoC
 
+P.S (This has been by far my favorite side project so far xD)
+
 ## Overview
 
 This project is a proof of concept for a sneaker marketplace built on a microservices architecture, utilizing Kafka for event-driven communication between services. Docker and Kubernetes are employed for containerization and orchestration, with Terraform used for provisioning Kubernetes manifests.
