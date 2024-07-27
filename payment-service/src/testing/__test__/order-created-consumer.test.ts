@@ -1,7 +1,9 @@
-import { GenericConsumer, IOrderCreatedEvent, OrderStatus } from "@sneakerstop/shared"
+import { GenericConsumer, IOrderCreatedEvent, OrderStatus, Topics } from "@sneakerstop/shared"
 import mongoose from "mongoose"
 import { mock, Mock } from "ts-jest-mocker";
 import { OrderModel } from "../../models/order";
+import { OrderCreatedConsumer } from "../../events/consumers/order-created-consumer";
+import { kafkaInstance } from "../..";
 
 const setup = async () => {
     const data: IOrderCreatedEvent = {
@@ -23,10 +25,10 @@ const setup = async () => {
 
 describe('OrderCreatedConsumer', () => {
 
-    let orderCreatedConsumer: Mock<GenericConsumer<IOrderCreatedEvent>>;
+    let orderCreatedConsumer: GenericConsumer<IOrderCreatedEvent>
 
     beforeEach(() => {
-        orderCreatedConsumer = mock<GenericConsumer<IOrderCreatedEvent>>();
+        orderCreatedConsumer = new OrderCreatedConsumer(Topics.ORDER_CREATED, 'TEST', kafkaInstance);
     });
 
 
