@@ -38,4 +38,5 @@ spec:
                 name: sneaker-srv
                 port:
                   number: 3001
+
                 

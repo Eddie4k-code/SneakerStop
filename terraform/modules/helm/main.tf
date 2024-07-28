@@ -10,10 +10,29 @@ resource "helm_release" "ingress-nginx" {
   create_namespace = true
 }
 
-/* Setup Grafana for metric visualization */
+/* 
+  Setup Grafana for metric visualization 
+  Ideally in a real this .
+*/
 resource "helm_release" "grafana" {
   name       = "grafana"
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
   namespace  = "default"
+
+  set {
+    name = "service.type"
+    value = "NodePort"
+  }
+
+  set {
+    name = "adminUser"
+    value = var.grafana_admin_username
+  }
+
+  set {
+    name = "adminPassword"
+    value = var.grafana_admin_password
+  }
+
 }
