@@ -3,5 +3,5 @@
 import { IOrder } from "../models/order";
 
 export interface IOrderRepository<T> {
-    getOrder(id: string): Promise<T>
+    getOrder(id: string): Promise<T | null>
 }
