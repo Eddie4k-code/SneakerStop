@@ -12,7 +12,6 @@ resource "helm_release" "ingress-nginx" {
 
 /* 
   Setup Grafana for metric visualization 
-  Ideally in a real this .
 */
 resource "helm_release" "grafana" {
   name       = "grafana"
@@ -39,3 +38,14 @@ resource "helm_release" "grafana" {
 
 
 /* Prometheus */
+
+resource "helm_release" "prometheus" {
+  name       = "prometheus"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "prometheus"
+  namespace  = "default"
+
+  values = [
+    file("${path.module}/prometheus-values.yaml")
+  ]
+}
