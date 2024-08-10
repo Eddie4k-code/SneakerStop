@@ -6,7 +6,7 @@ import {OrderStatus} from '@sneakerstop/shared';
 
 
 //Properties of a Order
-interface IOrder {
+export interface IOrder {
     externalId: string;
     userId: string;
     price: number;
@@ -19,7 +19,7 @@ interface IOrderModel extends mongoose.Model<IOrder> {
 }
 
 //Properties of a Order Document
-interface IOrderDocument extends mongoose.Document {
+export interface IOrderDocument extends mongoose.Document {
     userId: string;
     price: number;
     status: OrderStatus;

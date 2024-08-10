@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 import { logLevel } from 'kafkajs';
 import { OrderCreatedConsumer } from './events/consumers/order-created-consumer';
+import { createPaymentRouter } from './routes/new';
 
 
 
@@ -22,7 +23,7 @@ app.use(
     })
 )   
 
-
+app.use(createPaymentRouter);
 
 app.all("*", async (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError());

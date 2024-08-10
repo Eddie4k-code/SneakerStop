@@ -3,7 +3,7 @@ import { IOrderCreatedEvent } from "@sneakerstop/shared";
 import { SneakerModel } from "../../models/sneaker";
 import { OrderModel } from "../../models/order";
 
-/* Producer that is utilized when a new sneaker event occurs */
+/* Consumes events realated to a new order being created */
 export class OrderCreatedConsumer extends GenericConsumer<IOrderCreatedEvent> { 
 
     groupId = 'order-created-from-payment-service'
