@@ -2,7 +2,6 @@
 
 import { IOrder } from "../models/order";
 
-export interface IPaymentRepository<T> {
-    newPayment(attrs: IOrder): Promise<T>
+export interface IOrderRepository<T> {
+    getOrder(id: string): Promise<T>
 }
-
