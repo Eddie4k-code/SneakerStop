@@ -2,7 +2,7 @@ import { IOrder, IOrderDocument } from "../models/order";
 import { IOrderRepository } from "./IOrderRepository";
 
 /* A concrete implementation of sneaker repository */
-export class MongoSneakerRepository implements IOrderRepository<IOrderDocument> {
+export class MongoOrderRepository implements IOrderRepository<IOrderDocument> {
 
 
     async getOrder(id: string): Promise<IOrderDocument> {
