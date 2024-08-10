@@ -5,6 +5,6 @@ resource "kubernetes_secret" "jwt-secret" {
   }
 
   data = {
-    jwt = base64encode(var.jwt_secret)
+    JWT_SECRET = base64encode(var.jwt_secret)
   }
 }

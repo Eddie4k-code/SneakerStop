@@ -60,7 +60,9 @@ router.post('/api/orders', verifyUser, async (req: Request, res:Response, next: 
 
     await order.save();
 
-    const producer = new OrderCreatedProducer(Topics.ORDER_CREATED, kafkaInstance, order._id as string);
+    const order_id =  order._id!.toString();
+
+    const producer = new OrderCreatedProducer(Topics.ORDER_CREATED, kafkaInstance, order_id);
 
 
     //send create order event
