@@ -13,7 +13,7 @@ resource "kubernetes_secret" "jwt-secret" {
 resource "kubernetes_secret" "stripe-secret" {
   metadata {
     name = "stripe-secret"
-    namespace = default
+    namespace = "default"
   }
 
   data = {
