@@ -9,13 +9,13 @@ let mongo: MongoMemoryServer;
 
 
 declare global {
-  var signin: () => string[];
+  var signin: (userId?: string) => string[];
 }
 
-global.signin = () => {
+global.signin = (userId?: string) => {
 
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: userId || new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.com'
   }
 

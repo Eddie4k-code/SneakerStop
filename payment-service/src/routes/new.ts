@@ -17,7 +17,7 @@ createPaymentRouter.post('/api/payments', verifyUser, async (req: Request, res: 
        let response =  await paymentService.newPayment({externalId: req.body.externalId, userId: req.currentUser!.id});
 
 
-       return res.json(response);
+       return res.status(201).json(response);
 
         
 
