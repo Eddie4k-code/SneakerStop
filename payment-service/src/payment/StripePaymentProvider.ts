@@ -1,3 +1,4 @@
+import { GenericRequestError } from "@sneakerstop/shared";
 import { IPaymentProvider } from "./IPaymentProvider";
 import {Stripe} from 'stripe';
 
@@ -14,10 +15,25 @@ export class StripePaymentProvider implements IPaymentProvider {
 
     }
 
-    async createCharge(amount: number): Promise<void> {
-        await this._stripe.charges.create({
+    async createCharge(amount: number): Promise<string> {
+
+        try {
+
+        
+        const charge = await this._stripe.charges.create({
             currency: 'usd',
-            amount: amount * 100
+            amount: amount * 100,
+            source: 'tok_visa'
         });
+        
+        
+
+        return charge.receipt_url!;
+
+    } catch(err) {
+        console.log(err);
+        throw new GenericRequestError("Unable to Process Payment")
+    }
+
     }
 }

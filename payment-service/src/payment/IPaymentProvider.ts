@@ -3,6 +3,6 @@
 
 export interface IPaymentProvider {
 
-    createCharge(amount: number): void;
+    createCharge(amount: number): Promise<string>;
 
 }
