@@ -30,16 +30,16 @@ Within the Kafka Producers we have set `idempotent` to `true`. This configuratio
 
 ### Provision Infrastructure
 
-## Terraform Environment Variables
+#### Terraform Environment Variables
 Generate a .tfvars file in the appropriate environment directory (dev, stage, prod) including the following variables - 
 
 jwt_secret
 stripe_secret
 
-# Command
+#### Command
 Within the root directory `make apply` will provision all needed infrastructure.
 
-## Tear-Down Infrastructure
+### Tear-Down Infrastructure
 Within the root directory `make destroy` will destroy all provisioned infrastructure.
 
 ## Main Technologies Used
