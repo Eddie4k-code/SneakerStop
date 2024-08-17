@@ -27,6 +27,9 @@ it('returns 401 when a order dosent belong to a user', async () => {
         price: 150
     });
 
+
+    await order.save();
+
     await request(app)
         .post('/api/payments')
         .set('Cookie', global.signin())
