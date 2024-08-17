@@ -13,3 +13,7 @@ variable "jwt_secret" {
     default = "123"
 }
 
+variable "stripe_secret" {
+    sensitive = true
+}
+

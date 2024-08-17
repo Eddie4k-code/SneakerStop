@@ -45,6 +45,8 @@ module "helm" {
 module "k8s_secrets" {
     source = "../modules/k8s_secrets"
 
+    stripe_secret = var.stripe_secret
+
     providers = {
         kubernetes = kubernetes
     }
