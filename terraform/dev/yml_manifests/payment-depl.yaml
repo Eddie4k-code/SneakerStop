@@ -24,3 +24,8 @@ spec:
                   key: JWT_SECRET
             - name: MONGO_URI
               value: mongodb://sneaker-mongo-srv:27017/payment
+            - name: STRIPE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-secret
+                  key: STRIPE_SECRET

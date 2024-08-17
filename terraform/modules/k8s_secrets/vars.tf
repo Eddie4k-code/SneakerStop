@@ -3,3 +3,7 @@ variable "jwt_secret" {
     default = "change_me123"
 }
 
+variable "stripe_secret" {
+    sensitive = true
+}
+
