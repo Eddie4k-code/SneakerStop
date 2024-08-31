@@ -5,12 +5,17 @@ import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
 import { errorHandler } from '@sneakerstop/shared';
 import { NotFoundError } from '@sneakerstop/shared';
+import { TracerStrategy, ConsoleTracerExporterSDK } from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 
 
 
 export const app = express();
+
+/* Start up open telemetry */
+export const tracerStrategy: TracerStrategy = new ConsoleTracerExporterSDK("auth-service", "0.0.1");
+tracerStrategy.startSDK();
 
 app.set('trust proxy', true); //ingress-nginx proxy
 
