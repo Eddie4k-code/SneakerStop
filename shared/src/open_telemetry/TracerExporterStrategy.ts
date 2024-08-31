@@ -8,11 +8,11 @@ import {
 } from '@opentelemetry/sdk-metrics';
 
 
-/* Concrete Strategy Implementations for tracer exporters in open telemetry will utilize this */
-export abstract class TracerExporterStrategy {
-
-    abstract configureTracer(serviceName: string, version: string): Tracer
-    
+/* Concrete Strategy Implementations for tracers in open telemetry will utilize this */
+export interface TracerStrategy {
+    startSDK(): void;
+    stopSDK(): void;
+    getTracer(serviceName: string, version: string): Tracer
 }
 
 
