@@ -14,8 +14,11 @@ import mongoose from 'mongoose';
 export const app = express();
 
 /* Start up open telemetry */
-export const tracerStrategy: TracerStrategy = new ConsoleTracerExporterSDK("auth-service", "0.0.1");
+const serviceName = "auth-service";
+const version = "0.1.0"
+const tracerStrategy: TracerStrategy = new ConsoleTracerExporterSDK(serviceName, version);
 tracerStrategy.startSDK();
+export const tracer = tracerStrategy.getTracer(serviceName, version);
 
 app.set('trust proxy', true); //ingress-nginx proxy
 
