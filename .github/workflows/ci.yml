@@ -57,7 +57,7 @@ jobs:
       - changed-files
     steps:
       - name: Display Changed Files
-        run: "echo test: ${{ needs.print-changed-files.outputs.files_matrix }}"
+        run: "echo test: ${{ needs.changed-files.outputs.files_matrix }}"
         
 
   build:
