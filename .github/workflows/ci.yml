@@ -33,6 +33,10 @@ jobs:
         with:
           python-version: '3.x' 
 
+      - name: Run Python Unit Tests
+        run: |
+          make python_tests
+
       - name: Get Changed Files
         id: changed-files
         uses: tj-actions/changed-files@v45

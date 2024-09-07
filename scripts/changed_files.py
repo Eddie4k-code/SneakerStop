@@ -1,3 +1,5 @@
+
+
 """
 Identifies files that were changed to produce a matrix to run in git hub actions for updating the appropriate docker images.
 """
@@ -8,6 +10,9 @@ files = sys.argv[1:]
 
 services = set(["auth-service", "sneaker-service", "order-service", "payment-service"])
 
+"""
+Generates a matrix of service names returning an array of strings
+"""
 def get_changed_files(files):
     
     matrix = []
