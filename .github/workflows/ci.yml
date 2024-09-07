@@ -21,26 +21,7 @@ jobs:
         run: |
           cd terraform
           docker build -t ${{ matrix.env }}-tf-test --build-arg ENV=${{ matrix.env }} .
-  
-
-  changed_files:
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x' 
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v45
       
-      - name: Get Changed Files
-        run: |
-          echo "$(make get_changed_files changed_files=${{ steps.changed-files.outputs.all_changed_files }})"
-
 
 
   build:
@@ -48,6 +29,11 @@ jobs:
       matrix:
         service_name: [auth-service, sneaker-service, order-service, payment-service]
 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+     
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
