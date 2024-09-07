@@ -28,4 +28,5 @@ def get_changed_files(files):
 
 changed_files = get_changed_files(files)
 
+# Set as Output in github actions
 print(f"::set-output name=files_matrix::{json.dumps(changed_files)}")
