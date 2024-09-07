@@ -2,6 +2,7 @@
 
 #Environment to run commands in
 ENV := "dev"
+changed_files := 
 
 # Installs the ingress-nginx controller and applies all Kubernetes infrastructure
 apply:
@@ -12,7 +13,7 @@ destroy:
 	@cd $(CURDIR)/terraform/$(ENV) && terraform init && terraform destroy --auto-approve\
 
 get_changed_files:
-	python3 ./scripts/changed_files.py
+	python3 ./scripts/changed_files.py $(changed_files)
 
 
 
