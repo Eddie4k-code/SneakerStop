@@ -45,7 +45,11 @@ jobs:
         id: print-changed-files
         run: |
           changed_files=$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")
-          
+          test=${changed_files1:-1}
+          IFS= ', ' read -r -a array <<< "$test"
+          for element in "${test[@]}"; do
+            echo "$element"
+          done
 
 
   test-output:
