@@ -14,13 +14,13 @@ services = set(["auth-service", "sneaker-service", "order-service", "payment-ser
 Generates a matrix of service names returning an array of strings
 """
 def get_changed_files(files):
-    
-    matrix = []
+
+    matrix = set([])
     
     for service in files:
         service_directory = service.split("/")[0]
         
-        if service_directory in services:
+        if service_directory in services and service_directory not in matrix:
             matrix.append(service_directory)
     
 
