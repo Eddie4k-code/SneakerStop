@@ -45,7 +45,7 @@ jobs:
         id: print-changed-files
         run: |
           changed_files=$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")
-          echo "files_matrix=$changed_files" >> $GITHUB_OUTPUT
+          
 
 
   test-output:
@@ -54,13 +54,13 @@ jobs:
       - changed-files
     steps:
       - name: Display Changed Files
-        run: echo "${{ needs.changed-files.outputs.files_matrix }}"
+        run: echo "nothing right now"
         
 
   build:
     strategy:
       matrix:
-        service_name: ${{ needs.changed-files.outputs.changed_files }}
+        service_name: ["auth-service"]
 
     runs-on: ubuntu-latest
     steps:
