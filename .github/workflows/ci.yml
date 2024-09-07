@@ -44,16 +44,16 @@ jobs:
       - name: Print Changed Files
         id: print-changed-files
         run: |
-          changed_files=$(make get_changed_files changed_files="${{ steps.get-changed-files.outputs.all_changed_files }}")
-          formatted_files=$(echo "$changed_files" | jq -R -s 'split("\n") | map(select(length > 0))')
-          echo "changed_files=$formatted_files" >> $GITHUB_ENV
-          echo "::set-output name=changed_files::$formatted_files"
+          changed_files="$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")"
+          echo "::set-output name=changed_files::$changed_files"
+
+
 
 
   build:
     strategy:
       matrix:
-        service_name: ${{ needs.changed-files.outputs.changed_files }}
+        service_name: ${{ needs.changed-files.ou }}
 
     runs-on: ubuntu-latest
     steps:
