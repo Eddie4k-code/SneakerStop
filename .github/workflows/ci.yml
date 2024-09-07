@@ -39,7 +39,7 @@ jobs:
 
       - name: Get Changed Files
         run: |
-          echo "$(make get_changed_files changed_files=${{ steps.changed-files.outputs.all_changed_files }})"
+          echo "$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")"
       
 
 

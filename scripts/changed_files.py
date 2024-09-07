@@ -21,5 +21,4 @@ def get_changed_files(files):
 
     return matrix
 
-#Testing
 print(get_changed_files(files))
