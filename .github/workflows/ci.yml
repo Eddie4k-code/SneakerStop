@@ -47,13 +47,17 @@ jobs:
           changed_files="$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")"
           echo "::set-output name=changed_files::$changed_files"
 
-
-
+  test-output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo ${{ needs.changed-files.outputs.changed_files}}
+        
 
   build:
     strategy:
       matrix:
-        service_name: ${{ needs.changed-files.ou }}
+        service_name: ${{ needs.changed-files.outputs.changed_files }}
 
     runs-on: ubuntu-latest
     steps:
