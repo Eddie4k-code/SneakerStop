@@ -1,4 +1,4 @@
-
+import json
 
 """
 Identifies files that were changed to produce a matrix to run in git hub actions for updating the appropriate docker images.
@@ -26,4 +26,6 @@ def get_changed_files(files):
 
     return list(matrix)
 
-print(get_changed_files(files))
+changed_files = get_changed_files(files)
+
+print(json.dumps(changed_files))
