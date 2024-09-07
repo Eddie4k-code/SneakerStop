@@ -4,6 +4,7 @@
 ENV := "dev"
 changed_files := 
 
+
 # Installs the ingress-nginx controller and applies all Kubernetes infrastructure
 apply:
 	@cd $(CURDIR)/terraform/$(ENV) && terraform init && terraform plan && terraform apply --auto-approve
