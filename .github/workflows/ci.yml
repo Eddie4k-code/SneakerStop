@@ -46,6 +46,7 @@ jobs:
         run: |
           changed_files="$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")"
           echo "::set-output name=changed_files::$changed_files"
+          echo "test: $changed_files"
 
 
 
