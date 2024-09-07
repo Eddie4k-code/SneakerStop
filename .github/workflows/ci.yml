@@ -63,13 +63,10 @@ jobs:
         id: print-changed-files
         run: |
           make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}"
-      - name: echo it
-        run: |
-          echo "${{ steps.print-changed-files.outputs.files_matrix }} == fromJson([])"
       
   build:
     needs: changed-files
-    if: ${{ fromJson(needs.changed-files.outputs.files_matrix) != '[]' }}
+    if: ${{ fromJson(needs.changed-files.outputs.files_matrix) != fromJson('[]') }}
     strategy:
       matrix:
         service_name: ${{ fromJson(needs.changed-files.outputs.files_matrix) }}
