@@ -57,7 +57,7 @@ jobs:
       - changed-files
     steps:
       - name: Display Changed Files
-        run: echo "nothing right now"
+        run: "test: ${{ steps.print-changed-files.outputs.files_matrix }}"
         
 
   build:
