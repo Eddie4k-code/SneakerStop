@@ -53,7 +53,7 @@ jobs:
       - changed-files
     steps:
       - name: Display Changed Files
-        run: echo "Changed files: ${{ needs.changed-files.outputs.changed_files }}"
+        run: echo "${{ needs.changed-files.outputs.changed_files }}"
         
 
   build:
