@@ -6,7 +6,7 @@ import sys
 
 files = sys.argv[1:]
 
-services = set("auth-service", "sneaker-service", "order-service", "payment-service")
+services = set(["auth-service", "sneaker-service", "order-service", "payment-service"])
 
 def get_changed_files(files):
     
