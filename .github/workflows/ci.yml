@@ -45,7 +45,8 @@ jobs:
         id: print-changed-files
         run: |
           changed_files=$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")
-          echo "files_matrix=$changed_files" >> $GITHUB_OUTPUT
+          changed_files_json=$(echo $changed_files | jq -R -s -c 'split(" ")')
+          echo "files_matrix=$changed_files_json" >> $GITHUB_OUTPUT
 
 
   test-output:
