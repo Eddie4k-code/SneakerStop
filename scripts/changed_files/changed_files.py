@@ -5,6 +5,7 @@ Identifies files that were changed to produce a matrix to run in git hub actions
 """
 
 import sys
+import json
 
 files = sys.argv[1:]
 
@@ -26,4 +27,4 @@ def get_changed_files(files):
 
     return list(matrix)
 
-print(get_changed_files(files))
+print(json.dumps(get_changed_files(files)))

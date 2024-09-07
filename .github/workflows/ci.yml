@@ -52,8 +52,8 @@ jobs:
     needs:
       - changed-files
     steps:
-      - name: test
-        run: echo "${{ needs.changed-files.outputs.changed_files}}"
+      - name: Display Changed Files
+        run: echo "Changed files: ${{ needs.changed-files.outputs.changed_files }}"
         
 
   build:
