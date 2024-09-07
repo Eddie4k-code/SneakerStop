@@ -57,7 +57,7 @@ jobs:
     needs: changed-files
     strategy:
       matrix:
-        service_name: ${{ needs.changed-files.outputs.files_matrix }}
+        service_name: ${{ fromJson(needs.changed-files.outputs.files_matrix) }}
 
     runs-on: ubuntu-latest
     steps:
