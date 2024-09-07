@@ -9,7 +9,10 @@ apply:
 	
 # Destroys all Kubernetes infrastructure
 destroy:
-	@cd $(CURDIR)/terraform/$(ENV) && terraform init && terraform destroy --auto-approve 
+	@cd $(CURDIR)/terraform/$(ENV) && terraform init && terraform destroy --auto-approve\
+
+get_changed_files:
+	python3 ./scripts/changed_files.py
 
 
 
