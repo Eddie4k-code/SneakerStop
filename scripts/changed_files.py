@@ -12,7 +12,7 @@ def get_changed_files(files):
     
     matrix = []
     
-    for service in services:
+    for service in files:
         service_directory = service.split("/")[0]
         
         if service_directory in services:
