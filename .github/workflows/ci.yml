@@ -63,6 +63,9 @@ jobs:
         id: print-changed-files
         run: |
           make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}"
+      - name: echo it
+        run: |
+          echo ${{ steps.print-changed-files.outputs.files_matrix }}
       
   build:
     needs: changed-files
