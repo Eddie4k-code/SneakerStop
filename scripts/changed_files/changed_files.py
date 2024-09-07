@@ -15,15 +15,15 @@ Generates a matrix of service names returning an array of strings
 """
 def get_changed_files(files):
     
-    matrix = []
+    matrix = set()
     
     for service in files:
         service_directory = service.split("/")[0]
         
         if service_directory in services:
-            matrix.append(service_directory)
+            matrix.add(service_directory)
     
 
-    return set(matrix)
+    return list(matrix)
 
 print(get_changed_files(files))
