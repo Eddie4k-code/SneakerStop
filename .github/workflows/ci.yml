@@ -44,12 +44,11 @@ jobs:
       - name: Print Changed Files
         id: print-changed-files
         run: |
-          changed_files="$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")"
-          test=${changed_files:-1}
-          IFS=', ' read -r -a array <<< "$test"
-          for element in "${array[@]}"; do
-            echo "$element"
-          done
+          make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}"
+
+      - name: check output
+        run: |
+          echo "test: ${{ steps.print-changed-files.outputs.files_matrix }}"
 
 
   test-output:

@@ -28,4 +28,6 @@ def get_changed_files(files):
 
 changed_files = get_changed_files(files)
 
-print(json.dumps(changed_files))
+print(f"::set-output name=files_matrix::{json.dumps(changed_files)}")
+sys.exit(0)
+
