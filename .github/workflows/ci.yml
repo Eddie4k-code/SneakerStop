@@ -45,7 +45,8 @@ jobs:
         id: print-changed-files
         run: |
           changed_files=$(make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}")
-          echo "this is changed_files:$changed_files"
+          echo "files_matrix=$changed_files" >> $GITHUB_OUTPUT
+
 
   test-output:
     runs-on: ubuntu-latest
@@ -53,7 +54,7 @@ jobs:
       - changed-files
     steps:
       - name: Display Changed Files
-        run: echo "${{ needs.changed-files.outputs.changed_files }}"
+        run: echo "${{ needs.changed-files.outputs.files_matrix }}"
         
 
   build:
