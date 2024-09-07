@@ -49,6 +49,8 @@ jobs:
 
   test-output:
     runs-on: ubuntu-latest
+    needs:
+      - changed-files
     steps:
       - name: test
         run: echo ${{ needs.changed-files.outputs.changed_files}}
