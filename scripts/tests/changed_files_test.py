@@ -1,5 +1,5 @@
 import unittest
-from changed_files import get_changed_files
+from scripts.changed_files import get_changed_files
 
 
 class TestGetChangedFiles(unittest.TestCase):
