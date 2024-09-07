@@ -65,7 +65,7 @@ jobs:
           make get_changed_files changed_files="${{ steps.changed-files.outputs.all_changed_files }}"
       - name: echo it
         run: |
-          echo ${{ steps.print-changed-files.outputs.files_matrix }}
+          echo "${{ steps.print-changed-files.outputs.files_matrix }} == fromJson([])"
       
   build:
     needs: changed-files
