@@ -31,3 +31,4 @@ export * from './kafka_singleton/kafka-singleton'
 // open tel
 export * from './open_telemetry/ConsoleTracerExporter'
 export * from './open_telemetry/TracerExporterStrategy'
+export * from './open_telemetry/TracerContext'
