@@ -3,7 +3,7 @@ import { currentUserRouter } from './routes/current-user';
 import { signInRouter } from './routes/signin';
 import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
-import { errorHandler } from '@sneakerstop/shared';
+import { errorHandler, TracerContext } from '@sneakerstop/shared';
 import { NotFoundError } from '@sneakerstop/shared';
 import { TracerStrategy, ConsoleTracerExporterSDK } from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
@@ -16,9 +16,9 @@ export const app = express();
 /* Start up open telemetry */
 const serviceName = "auth-service";
 const version = "0.1.0"
-const tracerStrategy: TracerStrategy = new ConsoleTracerExporterSDK(serviceName, version);
-tracerStrategy.startSDK();
-export const tracer = tracerStrategy.getTracer(serviceName, version);
+const tracerContext = new TracerContext(new ConsoleTracerExporterSDK(serviceName, version));
+tracerContext.startSDK();
+export const tracer = tracerContext.getTracer(serviceName, version);
 
 app.set('trust proxy', true); //ingress-nginx proxy
 
