@@ -1,7 +1,7 @@
 import { Tracer } from "@opentelemetry/api";
 import { TracerStrategy } from "./TracerExporterStrategy";
 
-/* Holds reference to the tracer exporter strategy, and delegates tasks to the concrete implementation */
+/* Holds reference to the tracer exporter strategy, and delegates tasks to the concrete implementation  */
 export class TracerContext {
     
     private _tracerStrategy: TracerStrategy;
