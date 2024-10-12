@@ -21,7 +21,7 @@ export class ZipkinExporterStrategy implements TracerStrategy {
               "service.version": this._version
             }),
             traceExporter: new ZipkinExporter({
-                url: 'http://zipkin:9411'
+                url: 'zipkin.default.svc.cluster.local'
             })
         })
         
