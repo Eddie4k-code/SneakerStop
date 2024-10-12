@@ -45,5 +45,13 @@ spec:
                 name: payment-srv
                 port:
                   number: 3003
+          - path: /zipkin
+            pathType: Prefix
+            backend:
+              service:
+                name: zipkin-service
+                port:
+                  number: 9411
+
 
                 
