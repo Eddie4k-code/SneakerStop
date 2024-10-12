@@ -5,7 +5,7 @@ import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
 import { errorHandler, TracerContext } from '@sneakerstop/shared';
 import { NotFoundError } from '@sneakerstop/shared';
-import { TracerStrategy, ConsoleTracerExporterSDK } from '@sneakerstop/shared';
+import { TracerStrategy, ZipkinExporterStrategy } from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
 
@@ -16,7 +16,7 @@ export const app = express();
 /* Start up open telemetry */
 const serviceName = "auth-service";
 const version = "0.1.0"
-const tracerContext = new TracerContext(new ConsoleTracerExporterSDK(serviceName, version));
+const tracerContext = new TracerContext(new ZipkinExporterStrategy(serviceName, version));
 tracerContext.startSDK();
 export const tracer = tracerContext.getTracer(serviceName, version);
 
