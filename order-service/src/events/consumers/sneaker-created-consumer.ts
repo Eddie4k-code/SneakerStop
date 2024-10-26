@@ -9,9 +9,7 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
 
     
     async onEvent(data: any) {
-
-        
-  
+ 
         let jsonData = JSON.parse(data.value);
 
         const {_id, title, price} = jsonData.data;
@@ -26,8 +24,6 @@ export class SneakerCreatedConsumer extends GenericConsumer<any> {
         await sneaker.save();
 
         console.log("Processed sneaker-created event in order-service", jsonData.data);
-
-
     }
     
 }

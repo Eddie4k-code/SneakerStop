@@ -14,7 +14,7 @@ export class SneakerService implements ISneakerService<ISneakerDocument> {
     }
 
 
-    async newSneaker(attrs: ISneaker, Headers?: Record<string, string>): Promise<ISneakerDocument> {
+    async newSneaker(attrs: ISneaker, headers?: Record<string, string>): Promise<ISneakerDocument> {
 
         if (!attrs.title || !attrs.price || !attrs.size)  {
             throw new RequestValidationError("Title, Price and Size must be fulfilled..");
@@ -35,7 +35,7 @@ export class SneakerService implements ISneakerService<ISneakerDocument> {
             size: sneaker.size,
             version: sneaker.version,
             userId: sneaker.userId
-        }});
+        }}, headers);
 
         return sneaker;
 
