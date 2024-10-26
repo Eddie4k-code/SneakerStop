@@ -1,4 +1,4 @@
-import { Tracer } from "@opentelemetry/api";
+import { Tracer, trace, propagation, context } from "@opentelemetry/api";
 import { TracerStrategy } from "./TracerExporterStrategy";
 
 /* Holds reference to the tracer exporter strategy, and delegates tasks to the concrete implementation  */
@@ -22,5 +22,14 @@ export class TracerContext {
     public getTracer(serviceName: string, version: string): Tracer {
         return this._tracerStrategy.getTracer(serviceName, version);
     }
+    
+    public InjectPropagation(headers: Record<string, string>): void {
+        propagation.inject(context.active(), headers);
+    };
+
+    public ExtractPropagation(headers: Record<string, string>): void {
+        propagation.extract(context.active(), headers || {});
+    }
+
 
 }
