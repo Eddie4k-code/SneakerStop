@@ -18,13 +18,13 @@ export abstract class GenericProducer<T extends IEvent> {
     }
 
 
-    async send(event: T): Promise<void> {
+    async send(event: T, headers?: Record<string, string>): Promise<void> {
 
         await this.producer.connect();
 
         await this.producer.send({
             topic: this.topic,
-            messages: [{key: this.key, value: JSON.stringify(event as any)}],
+            messages: [{key: this.key, value: JSON.stringify(event as any), headers: headers}],
             acks: -1 //all
         });
 
