@@ -1,12 +1,13 @@
 import { verifyUser, RequestValidationError, Topics, CustomError } from '@sneakerstop/shared';
 import express, {NextFunction, Request, Response} from 'express';
 import { ISneakerDocument, SneakerModel } from '../../models/sneaker';
-import { kafkaInstance } from '..';
+import { kafkaInstance, tracer } from '..';
 import { Producer } from '../events/producers/new-sneaker-producer';
 import { ISneakerRepository } from '../repository/ISneakerRepository';
 import { MongoSneakerRepository } from '../repository/SneakerRepository';
 import { ISneakerService } from '../service/ISneakerService';
 import { SneakerService } from '../service/SneakerService';
+import {Context, propagation, context} from '@opentelemetry/api';
 
 const router = express.Router();
 
@@ -82,18 +83,33 @@ const sneakerService: ISneakerService<ISneakerDocument> = new SneakerService(new
  */
 router.post('/api/sneakers', verifyUser, async (req: Request, res: Response, next: NextFunction) => {
 
-    try {
+    /* Start Open Tel Span */
+    const span = tracer.startSpan("new sneaker", {
+        attributes: {
+            'http.method': 'POST',
+            'http.url': req.originalUrl
+        },
+    })
 
+    try {
+        
         const {title, price, size, version} = req.body;
 
-        const sneaker = await sneakerService.newSneaker({title, price, size, version, userId: req.currentUser!.id});
-    
+        const headers: Record<string, string> = {};
+        /* Pass Open Tel Propagation to headers so we can trace the span over multiple services */
+        propagation.inject(context.active(), headers);
+
+        const sneaker = await sneakerService.newSneaker({title, price, size, version, userId: req.currentUser!.id}, headers);
+
         return res.status(201).send(sneaker);
 
     } catch(err: any) {
-
+        span.recordException(err);
+        span.setStatus({code: 2, message: err.message})
         next(err)
 
+    } finally {
+        span.end();
     }
     
 });

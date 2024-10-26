@@ -1,5 +1,5 @@
 import express, {NextFunction, Request, Response} from 'express';
-import { errorHandler, KafkaSingleton, Topics } from '@sneakerstop/shared';
+import { errorHandler, KafkaSingleton, Topics, TracerContext, ZipkinExporterStrategy } from '@sneakerstop/shared';
 import { NotFoundError} from '@sneakerstop/shared';
 import cookieSession from 'cookie-session';
 import mongoose from 'mongoose';
@@ -44,6 +44,13 @@ const specs = swaggerJSDoc(swaggerOptions);
 
 
 export const app = express();
+
+/* Start up open telemetry */
+const serviceName = "sneaker-service";
+const version = "0.1.0"
+const tracerContext = new TracerContext(new ZipkinExporterStrategy(serviceName, version));
+tracerContext.startSDK();
+export const tracer = tracerContext.getTracer(serviceName, version);
 
 app.set('trust proxy', true); //ingress-nginx proxy
 
