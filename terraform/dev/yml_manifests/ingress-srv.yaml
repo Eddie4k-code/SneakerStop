@@ -11,42 +11,42 @@ spec:
     - http:
         paths:
           - path: /api/users/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: auth-srv
                 port:
                   number: 3000
           - path: /api/sneakers/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: sneaker-srv
                 port:
                   number: 3001
           - path: /api/orders/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: order-srv
                 port:
                   number: 3002
           - path: /api-docs/sneakers/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: sneaker-srv
                 port:
                   number: 3001
           - path: /api/payments/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: payment-srv
                 port:
                   number: 3003
           - path: /zipkin
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: zipkin-service

@@ -19,20 +19,20 @@ resource "helm_release" "grafana" {
   chart      = "grafana"
   namespace  = "default"
 
-  set {
-    name = "service.type"
-    value = "NodePort"
-  }
-
-  set {
-    name = "adminUser"
-    value = var.grafana_admin_username
-  }
-
-  set {
-    name = "adminPassword"
-    value = var.grafana_admin_password
-  }
+   set = [
+    {
+      name  = "service.type"
+      value = "NodePort"
+    },
+    {
+      name  = "adminUser"
+      value = var.grafana_admin_username
+    },
+    {
+      name  = "adminPassword"
+      value = var.grafana_admin_password
+    }
+  ]
 }
 
 
