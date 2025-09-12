@@ -8,5 +8,7 @@ RUN npm install
 
 COPY . ./
 
-CMD ["npm", "start"]
+EXPOSE 3003
+
+CMD ["cmd", "dist/index.js"]
 
