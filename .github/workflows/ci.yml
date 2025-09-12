@@ -93,4 +93,4 @@ jobs:
     - name: Build and Push Docker Images
       run: |
         docker build ./${{ matrix.service_name }} -t ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service_name }}:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service_name }}:latest
+        docker push eddie1322/${{ matrix.service_name }}:latest
