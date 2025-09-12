@@ -10,5 +10,5 @@ COPY . ./
 
 EXPOSE 3003
 
-CMD ["cmd", "dist/index.js"]
+CMD ["node", "dist/index.js"]
 
